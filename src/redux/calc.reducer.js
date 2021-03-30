@@ -1,6 +1,11 @@
+import {
+    atan2, chain, derivative, e, evaluate, log, pi, pow, round, sqrt
+  } from 'mathjs'
+
 const initState = {
 
-	result: ""
+	result: '',
+    log: ''
 
 }
 
@@ -11,11 +16,8 @@ const calcReducer = (state = initState, action) => {
     switch (action.type){
         case 'INPUT':
 
-            console.log(state)
-
             if(action.payload.button === "="){
                 var checkResult = ''
-                console.log(state.result)
     
                 if(state.result.includes('--')){
                     checkResult = state.result.replace('--','+')
@@ -25,8 +27,10 @@ const calcReducer = (state = initState, action) => {
                     checkResult = state.result
                 }
 
+                checkResult = state.result
+
                 try {
-                    checkResult = (eval(checkResult) || "" ) + ""
+                    checkResult = (evaluate(checkResult) || "" ) + ""
 
                 } catch (e) {
                     checkResult =  "error"
@@ -34,7 +38,8 @@ const calcReducer = (state = initState, action) => {
 
                 return {
                     ...state,
-                    result: checkResult
+                    result: checkResult,
+                    log: `${state.log} ${state.result} result: ${checkResult}`
                 } 
             }
 
@@ -45,7 +50,7 @@ const calcReducer = (state = initState, action) => {
                 }
             }
             else if(action.payload.button === "backspace"){
-                var checkResult = state.result.slice(0, -1)
+                checkResult = state.result.slice(0, -1)
 
                 return {
                     ...state,

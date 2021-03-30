@@ -4,7 +4,7 @@ import BasicCalcKeyPad from './BasicCalcKeyPad'
 import BasicCalcLog from './BasicCalcLog'
 
 
-class BasicCalc extends Component {
+class BasicCalcRedux extends Component {
 
     onClickHandler = (button) => {
         this.props.send(button)
@@ -14,7 +14,8 @@ class BasicCalc extends Component {
 
         return (
             <div>
-                <BasicCalcLog />
+                <h1>WITH REDUX</h1>
+                <BasicCalcLog log={this.props.log} />
                 <div>Result: {this.props.result} </div>
                 <BasicCalcKeyPad onClick={this.onClickHandler}/>
             </div>
@@ -24,7 +25,8 @@ class BasicCalc extends Component {
 
 const mapState = (state) => {
     return {
-        result: state.calc.result
+        result: state.calc.result,
+        log: state.calc.log
     }
 } 
 
@@ -34,4 +36,4 @@ const mapDispatch = (dispatch) => {
     }
 }
 
-export default connect(mapState, mapDispatch)(BasicCalc)
+export default connect(mapState, mapDispatch)(BasicCalcRedux)

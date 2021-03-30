@@ -10,9 +10,9 @@ class BasicCalcLog extends Component {
         return (
             <>
             <div>
-            Log:
-
-                
+                Log: {
+                        this.props.log
+                    }
             </div>
             </>
 
