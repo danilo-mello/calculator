@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import LogForm from './LogForm'
+import LogListPage from './LogListPage'
+
 
 const SaveLog = () => {
 
@@ -14,18 +16,27 @@ const SaveLog = () => {
     }
 
     return (
-        saving ?
+        saving  ?
             <>
                 <LogForm />
                 <div>
                     <button onClick={() => {onSaveLogHandler()}}>Cancel</button>
                 </div>
+
+                <LogListPage />
+
             </>
+                
+            
         :
             <>
                 <div>
                     <button onClick={() => {onSaveLogHandler()}}>Save Log</button>
                 </div>
+
+                <LogListPage />
+
+
             </>
 
     )
