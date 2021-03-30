@@ -1,64 +1,28 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
+import React, { useState, useContext, useEffect } from 'react'
 import BasicCalcKeyPad from './BasicCalcKeyPad'
 import BasicCalcLog from './BasicCalcLog'
-import {
-    atan2, chain, derivative, e, evaluate, log, pi, pow, round, sqrt
-  } from 'mathjs'
-
+import { CalcContext } from "../../context/CalcProvider";
 
 const BasicCalcHooks = () => {
 
     const [result, setResult] = useState("")
+    const calcContext = useContext(CalcContext)
 
     const onClickHandler = (button) => {
-        setResult(button)
-        if(button === "="){
-                var checkResult = ''
-    
-                if(result.includes('--')){
-                    checkResult = result.replace('--','+')
-                }
 
-                else {
-                    checkResult = result
-                }
-
-
-                try {
-                    checkResult = (evaluate(checkResult) || "" ) + ""
-
-                } catch (e) {
-                    checkResult =  "error"
-                }
-
-                setResult(checkResult)
-            }
-
-            else if(button === "c"){
-                setResult("")
-            }
-            else if(button === "backspace"){
-                checkResult = result.slice(0, -1)
-
-                setResult(checkResult)
-            }
-            else if(button === "square"){
-                setResult(result ** 2)
-                
-            }
-            else if(button === "squareroot"){
-                setResult(result ** 0.5)
-            } else {
-                setResult(result + button)
-            }
+        calcContext.onInput(button)
+        
     }
+
+
+    useEffect(() => {
+        setResult(calcContext.result)
+    }, [calcContext.result]);
 
     return (
         <div>
-            <h1>WITH HOOKS</h1>
-            <BasicCalcLog />
-            <input type="text" value={result} /> 
+            <BasicCalcLog calclog={calcContext.calclog} />
+            <input type="text" defaultValue={result} /> 
             <BasicCalcKeyPad onClick={onClickHandler}/>
         </div>
     )

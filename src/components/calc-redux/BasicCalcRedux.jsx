@@ -14,7 +14,6 @@ class BasicCalcRedux extends Component {
 
         return (
             <div>
-                <h1>WITH REDUX</h1>
                 <BasicCalcLog log={this.props.log} />
                 <div>Result: {this.props.result} </div>
                 <BasicCalcKeyPad onClick={this.onClickHandler}/>

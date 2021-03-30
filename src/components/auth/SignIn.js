@@ -1,20 +1,14 @@
-import React, {useState} from "react";
-import { signInWithGoogle, auth } from "../../firebase";
+import React from "react";
+import { signInWithGoogle } from "../../firebase";
 
 const SignIn = () => {
 
-    const [error, setError] = useState(null);
 
   return (
     <div >
-      <div>
-        {error !== null && <div>{error}</div>}
-
-        <button onClick={() => {signInWithGoogle();}}>
-          Sign in with Google
-        </button>
-
-      </div>
+      <button onClick={() => {signInWithGoogle();}}>
+        Sign in with Google
+      </button>
     </div>
   );
 };

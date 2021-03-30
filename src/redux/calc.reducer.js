@@ -1,6 +1,5 @@
-import {
-    atan2, chain, derivative, e, evaluate, log, pi, pow, round, sqrt
-  } from 'mathjs'
+import { evaluate, pow, sqrt } from 'mathjs'
+// import { atan2, chain, derivative, e, evaluate, log, pi, pow, round, sqrt } from 'mathjs'
 
 const initState = {
 
@@ -60,14 +59,14 @@ const calcReducer = (state = initState, action) => {
             else if(action.payload.button === "square"){
                 return {
                     ...state,
-                    result: state.result * state.result
+                    result: pow(state.result, 2)
                 }
                 
             }
             else if(action.payload.button === "squareroot"){
                 return {
                     ...state,
-                    result: state.result ** 0.5
+                    result: sqrt(state.result)
                 }
             }
 

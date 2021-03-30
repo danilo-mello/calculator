@@ -1,23 +1,19 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class BasicCalcLog extends Component {
-
-
+const BasicCalcLog = (props) => {
 
 
+    return (
+        <>
+        <div>
+            Log: {
+                    props.calclog
+                }
+        </div>
+        </>
 
-    render () {
-        return (
-            <>
-            <div>
-                Log: {
-                        this.props.log
-                    }
-            </div>
-            </>
-
-        )
-    }
+    )
+    
 }
 
 
