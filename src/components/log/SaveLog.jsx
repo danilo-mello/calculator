@@ -1,28 +1,33 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { CalcContext } from "../../context/CalcProvider";
+import React, { useState } from 'react'
+import LogForm from './LogForm'
 
 const SaveLog = () => {
 
-    const calcContext = useContext(CalcContext)
+    const [saving, setSaving] = useState(false)
 
-    const onSaveLogHandler = (e) => {
-
-        e.preventDefault()
-        console.log('submited')
-        
+    const onSaveLogHandler = () => {
+        if (saving) {
+            setSaving(false)
+        } else {
+            setSaving(true)
+        }
     }
 
-
-    useEffect(() => {
-        console.log('ho')
-    }, []);
-
     return (
-        <div>
-            <form onSubmit={e => {onSaveLogHandler(e)}}>
-                <button type="submit">Save Log</button>
-            </form>
-        </div>
+        saving ?
+            <>
+                <LogForm />
+                <div>
+                    <button onClick={() => {onSaveLogHandler()}}>Cancel</button>
+                </div>
+            </>
+        :
+            <>
+                <div>
+                    <button onClick={() => {onSaveLogHandler()}}>Save Log</button>
+                </div>
+            </>
+
     )
 }
 

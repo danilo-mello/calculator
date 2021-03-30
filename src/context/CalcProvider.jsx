@@ -8,6 +8,7 @@ export const CalcContext = createContext({
     calclog: [],
     onInput: () => {},
     result: "",
+    onSaveLog: () => {}
 
 
 })
@@ -17,6 +18,9 @@ const CalcProvider = (props) => {
     const [calclog, setCalclog] = useState([])
     const [result, setResult] = useState("")
 
+    const onSaveLog = (logInfo) => {
+        console.log("info: ", logInfo)
+    }
 
     const onInput = (button) => {
 
@@ -94,7 +98,7 @@ const CalcProvider = (props) => {
     }
     
     return (
-        <CalcContext.Provider value={ { result: result, calclog: calclog, onInput: onInput } }>
+        <CalcContext.Provider value={ { result: result, calclog: calclog, onInput: onInput, onSaveLog: onSaveLog } }>
             {props.children}
         </CalcContext.Provider>
     )
