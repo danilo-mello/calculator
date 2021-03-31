@@ -1,5 +1,6 @@
 import BasicCalcHooks from './calc-hooks/BasicCalcHooks';
 import SaveLog from './log/SaveLog';
+import LogListPage from './log/LogListPage';
 // import BasicCalcRedux from './calc-redux/BasicCalcRedux';
 import SignIn from './auth/SignIn'
 import { UserContext } from "../context/UserProvider";
@@ -22,6 +23,7 @@ function Application() {
             <hr />
             <div> Hi {user.displayName} <button onClick = {() => {auth.signOut()}}>Sign out</button> </div>
             <SaveLog />
+            <LogListPage />
 
         </>
 
