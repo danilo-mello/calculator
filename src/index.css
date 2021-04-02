@@ -40,7 +40,12 @@
 }
 
 @layer components {
+  /* Pages */
   .App {
-    @apply h-screen w-screen flex items-center justify-center border;
+    @apply h-screen w-screen flex items-center justify-center relative border;
+  }
+  /* UI */
+  .Button {
+    @apply w-full text-gray-300 hover:text-gray-200 bg-white to-gray-800 bg-opacity-20 hover:bg-opacity-30 border-t border-gray-400 duration-300 shadow-md rounded-lg py-4;
   }
 }

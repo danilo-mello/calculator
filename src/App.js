@@ -1,11 +1,12 @@
 // import "./App.css";
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, PrivateRoute } from "react-router-dom";
 import Application from "./components/Application";
 import UserProvider from "./context/UserProvider";
 import CalcProvider from "./context/CalcProvider";
 import LogProvider from "./context/LogProvider";
 import background from "./assets/img/bg1.png";
+import NavBar from "./components/UI/NavBar";
 import Test from "./components/Test";
 
 function App() {
@@ -14,9 +15,12 @@ function App() {
       <LogProvider>
         <CalcProvider>
           <UserProvider>
+            <Route>
+              <Route path="/" component={NavBar} />
+            </Route>
             <Switch>
               <Route exact path="/" component={Application} />
-              {/* <Route path="/test" component={Test} /> */}
+              <Route path="/test" component={Test} />
             </Switch>
           </UserProvider>
         </CalcProvider>
