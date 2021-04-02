@@ -7,7 +7,7 @@ import CalcProvider from "./context/CalcProvider";
 import LogProvider from "./context/LogProvider";
 import background from "./assets/img/bg1.png";
 import NavBar from "./components/UI/NavBar";
-import Test from "./components/Test";
+import SaveLog from "./components/log/SaveLog";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
             </Route>
             <Switch>
               <Route exact path="/" component={Application} />
-              <Route path="/test" component={Test} />
+              {/* <Route path="/save" component={SaveLog} /> */}
             </Switch>
           </UserProvider>
         </CalcProvider>

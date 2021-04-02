@@ -13,9 +13,7 @@ function Application() {
 
   const style = {
     text: {
-      // color: "rgba(255, 255, 255, 0)",
-      textShadow:
-        "-1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF",
+      webkitTextStroke: "1px #FFF",
     },
   };
 
@@ -25,8 +23,8 @@ function Application() {
       <BasicCalcHooks />
       {/* <h1>WITH REDUX</h1> */}
       {/* <BasicCalcRedux /> */}
-      <hr />
-      <div>
+      {/* <hr /> */}
+      {/* <div>
         {" "}
         Hi {user.displayName}{" "}
         <button
@@ -36,9 +34,9 @@ function Application() {
         >
           Sign out
         </button>{" "}
-      </div>
-      <SaveLog />
-      <LogListPage />
+      </div> */}
+      {/* <SaveLog /> */}
+      {/* <LogListPage /> */}
     </>
   ) : (
     <div className="h-full w-full flex items-center justify-center border-2">
@@ -47,11 +45,11 @@ function Application() {
       {/* <BasicCalcHooks /> */}
       {/* <h1>WITH REDUX</h1> */}
       {/* <BasicCalcRedux /> */}
-      <div className="w-1/3 text-center border">
-        <h1 className="text-gray-800" style={style.text}>
+      <div className="w-5/6 md:w-2/5 text-center border">
+        <h1 className="text-transparent" style={style.text}>
           Calc Log
         </h1>
-        <p className="my-4">
+        <p className="my-8">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid,
           temporibus. Inventore fugiat praesentium eaque, minima officia rerum
           quia maxime reiciendis?

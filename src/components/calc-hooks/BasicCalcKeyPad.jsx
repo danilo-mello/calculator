@@ -1,10 +1,23 @@
 import React from "react";
+import Keyboard from "./Keyboard";
+import Key from "./Key";
 
 const BasicCalcKeyPad = (props) => {
   return (
-    <div>
-      <p>
-        <button
+    <div className="w-72 flex flex-wrap border">
+      {Keyboard.map((keyboard, index) => (
+        <div key={index}>
+          <Key
+            id={keyboard.id}
+            onClick={(e) => {
+              props.onClick(e.target.id);
+            }}
+            keyboard={keyboard.keyboard}
+          />
+        </div>
+      ))}
+
+      {/* <button
           id="7"
           onClick={(e) => {
             props.onClick(e.target.id);
@@ -222,8 +235,7 @@ const BasicCalcKeyPad = (props) => {
           className="border"
         >
           =
-        </button>
-      </p>
+        </button> */}
     </div>
   );
 };

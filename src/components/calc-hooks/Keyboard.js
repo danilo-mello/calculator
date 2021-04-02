@@ -1,0 +1,27 @@
+const Keyboard = [
+  { id: "7", keyboard: "7" },
+  { id: "8", keyboard: "8" },
+  { id: "9", keyboard: "9" },
+  { id: "/", keyboard: "/" },
+  { id: "backspace", keyboard: "←" },
+  { id: "C", keyboard: "C" },
+  { id: "4", keyboard: "4" },
+  { id: "5", keyboard: "5" },
+  { id: "6", keyboard: "6" },
+  { id: "*", keyboard: "*" },
+  { id: "(", keyboard: "(" },
+  { id: ")", keyboard: ")" },
+  { id: "1", keyboard: "1" },
+  { id: "2", keyboard: "2" },
+  { id: "3", keyboard: "3" },
+  { id: "-", keyboard: "-" },
+  { id: "square", keyboard: "x²" },
+  { id: "squareroot", keyboard: "√" },
+  { id: "0", keyboard: "0" },
+  { id: ".", keyboard: "." },
+  { id: "%", keyboard: "%" },
+  { id: "+", keyboard: "+" },
+  { id: "=", keyboard: "=" },
+];
+
+export default Keyboard;

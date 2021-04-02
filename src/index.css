@@ -7,8 +7,9 @@
     @apply text-gray-400 bg-gray-900;
   }
   /* font-size */
+  /* @apply text-4xl sm:text-5xl xl:text-6xl; */
   h1 {
-    @apply text-4xl sm:text-5xl xl:text-6xl;
+    @apply text-7xl sm:text-8xl xl:text-9xl;
   }
   h2 {
     @apply text-3xl sm:text-4xl xl:text-5xl;
