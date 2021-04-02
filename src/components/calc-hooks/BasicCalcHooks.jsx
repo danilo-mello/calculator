@@ -16,14 +16,14 @@ const BasicCalcHooks = () => {
   }, [calcContext.result]);
 
   return (
-    <div className="h-full w-full flex items-center justify-center border-4">
-      <div className="h-full w-1/2 flex items-center justify-center border">
+    <div className="h-full w-full flex flex-wrap items-center justify-center border-4">
+      <div className="h-1/4 lg:h-full w-full lg:w-1/2 flex items-center justify-center border">
         <div>
           <BasicCalcLog calclog={calcContext.calclog} />
           <input type="text" defaultValue={result} />
         </div>
       </div>
-      <div className="h-full w-1/2 flex items-center justify-center border">
+      <div className="h-3/4 lg:h-full w-full lg:w-1/2 flex items-center justify-center border">
         <BasicCalcKeyPad onClick={onClickHandler} />
       </div>
     </div>
