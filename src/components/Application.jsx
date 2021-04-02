@@ -6,7 +6,6 @@ import SignIn from "./auth/SignIn";
 import { UserContext } from "../context/UserProvider";
 import { auth } from "../firebase";
 import React, { useContext } from "react";
-import NavBar from "./UI/NavBar";
 
 function Application() {
   const user = useContext(UserContext);
@@ -45,7 +44,7 @@ function Application() {
       {/* <BasicCalcHooks /> */}
       {/* <h1>WITH REDUX</h1> */}
       {/* <BasicCalcRedux /> */}
-      <div className="w-5/6 md:w-2/5 text-center border">
+      <div className="w-5/6 md:w-2/5 text-center">
         <h1 className="text-transparent" style={style.text}>
           Calc Log
         </h1>

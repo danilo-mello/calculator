@@ -10,7 +10,7 @@ const SignIn = () => {
         onClick={() => {
           signInWithGoogle();
         }}
-        button={"Sign in with Google"}
+        button="Sign in with Google"
       />
       {/* <button onClick={() => {signInWithGoogle();}}>
         Sign in with Google

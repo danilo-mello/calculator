@@ -20,7 +20,6 @@ function App() {
             </Route>
             <Switch>
               <Route exact path="/" component={Application} />
-              {/* <Route path="/save" component={SaveLog} /> */}
             </Switch>
           </UserProvider>
         </CalcProvider>
