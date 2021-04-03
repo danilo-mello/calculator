@@ -23,7 +23,7 @@ const LogListPage = () => {
 
             {
             userLogs.map(({id, title, log, result, comment, dateCreated, dateModified, active }) => (
-                <div> 
+                <div key={id}> 
                     <p>id: {id}, title: {title}, log: {log}, result: {result}, comment: {comment}, date created: {dateCreated}, date modified: {dateModified}, active: {active} </p>
                 </div>
             ))

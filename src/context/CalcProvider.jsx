@@ -28,7 +28,9 @@ const CalcProvider = (props) => {
                     
 
                     if (result !== checkResult) {
-                        setCalclog(calclog + "\n" + result + " = " + checkResult + "\n")
+                        // setCalclog(calclog + "\n" + result + " = " + checkResult + "\n")
+                        setCalclog((calclog) => [...calclog, result + " = " + checkResult])
+
                     }
 
                 } catch (e) {
@@ -38,7 +40,7 @@ const CalcProvider = (props) => {
                 setResult(checkResult)
             }
 
-            else if(button === "c"){
+            else if(button === "C"){
                 setResult("")
             }
             else if(button === "backspace"){
@@ -59,7 +61,9 @@ const CalcProvider = (props) => {
                     checkResult = pow(result, 2)
                 
                     if (result !== checkResult) {
-                    setCalclog(calclog + "\n" + result + "² = " + checkResult + "\n")
+                    // setCalclog(calclog + "\n" + result + "² = " + checkResult + "\n")
+                    setCalclog((calclog) => [...calclog, result + "² = " + checkResult])
+
                 }
 
                 } catch (e) {
@@ -73,7 +77,9 @@ const CalcProvider = (props) => {
                     checkResult = sqrt(result)
                 
                     if (result !== checkResult) {
-                    setCalclog(calclog + "\n√" + result + " = " + checkResult + "\n")
+                    // setCalclog(calclog + "\n√" + result + " = " + checkResult + "\n")
+                    setCalclog((calclog) => [...calclog, "√" + result + " = " + checkResult])
+
                 }
 
                 } catch (e) {
