@@ -4,9 +4,12 @@ import BasicCalcLog from "./BasicCalcLog";
 import { CalcContext } from "../../context/CalcProvider";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
+import Log from "../UI/Log";
 
 const BasicCalcHooks = () => {
   const [result, setResult] = useState("");
+  const [calclog, setCalclog] = useState([])
+
   const calcContext = useContext(CalcContext);
 
   const onClickHandler = (button) => {
@@ -15,7 +18,9 @@ const BasicCalcHooks = () => {
 
   useEffect(() => {
     setResult(calcContext.result);
-  }, [calcContext.result]);
+    setCalclog(calcContext.calclog);
+    console.log(calclog)
+  }, [calcContext.result, calcContext.calclog]);
 
   return (
     <div className="BasicCalc">
@@ -33,7 +38,10 @@ const BasicCalcHooks = () => {
       </div>
       {/* <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex items-center justify-end border">
         <div className="w-3/4 lg:w-80 border">
-          <BasicCalcLog calclog={calcContext.calclog} />
+
+          <Log log={calcContext.calclog} />
+          {/* <BasicCalcLog calclog={calcContext.calclog} /> */}
+          {/* <input type="text" defaultValue={result} /> */}
           <div className="mt-4">
             <Input type="text" defaultValue={result} placeholder="Result" />
           </div>
