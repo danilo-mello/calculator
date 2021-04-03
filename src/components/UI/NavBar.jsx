@@ -8,7 +8,7 @@ const NavBar = ({ fixed }) => {
       <nav className="relative flex flex-wrap items-center justify-between py-4 border">
         <div className="container mx-auto flex flex-wrap items-center justify-between border">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            <a className="font-semibold inline-block py-2 border" href="#">
+            <a className="font-medium inline-block py-2 border" href="#">
               Calc Log
             </a>
             <button
@@ -29,7 +29,7 @@ const NavBar = ({ fixed }) => {
             <ul className="flex flex-col lg:flex-row lg:ml-auto">
               <li className="nav-item">
                 <a
-                  className="p-2 flex items-center font-semibold hover:opacity-75 border"
+                  className="p-2 flex items-center font-medium hover:opacity-75 border"
                   href="#"
                 >
                   New Log
@@ -37,7 +37,7 @@ const NavBar = ({ fixed }) => {
               </li>
               <li className="nav-item">
                 <a
-                  className="p-2 flex items-center font-semibold hover:opacity-75 border"
+                  className="p-2 flex items-center font-medium hover:opacity-75 border"
                   href="#"
                 >
                   My Log
@@ -45,7 +45,7 @@ const NavBar = ({ fixed }) => {
               </li>
               <li className="nav-item">
                 <a
-                  className="p-2 flex items-center font-semibold hover:opacity-75 border"
+                  className="p-2 flex items-center font-medium hover:opacity-75 border"
                   href="#"
                 >
                   Sign Out

@@ -1,16 +1,8 @@
 import React from "react";
-// import Textarea from "../components";
-
-// <div>Log: {props.calclog}</div>
-// <Textarea textarea={props.calclog} />
+import Log from "../UI/Log";
 
 const BasicCalcLog = (props) => {
-  return (
-    // <>
-    //   <div>Log: {props.calclog}</div>
-    // </>
-    <Textarea textarea={props.calclog} />
-  );
+  return <Log log={props.calclog} />;
 };
 
 export default BasicCalcLog;
