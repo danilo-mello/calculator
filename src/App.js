@@ -1,6 +1,6 @@
 // import "./App.css";
 import React from "react";
-import { Switch, Route, PrivateRoute } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Application from "./components/Application";
 import UserProvider from "./context/UserProvider";
 import CalcProvider from "./context/CalcProvider";

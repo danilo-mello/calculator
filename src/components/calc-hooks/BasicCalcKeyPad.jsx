@@ -4,9 +4,13 @@ import Key from "./Key";
 
 const BasicCalcKeyPad = (props) => {
   return (
-    <div className="w-3/4 lg:w-80 flex flex-wrap justify-center border-4">
+    <div className="h-full w-3/4 flex flex-wrap justify-center border">
+      {/* <div className="w-80 flex flex-wrap justify-center border"> */}
       {Keyboard.map((keyboard, index) => (
-        <div key={index}>
+        <div
+          key={index}
+          className="h-auto w-1/4 flex items-center justify-center border"
+        >
           <Key
             id={keyboard.id}
             onClick={(e) => {
