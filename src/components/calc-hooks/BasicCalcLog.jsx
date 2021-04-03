@@ -1,20 +1,8 @@
-import React from 'react'
+import React from "react";
+import Log from "../UI/Log";
 
 const BasicCalcLog = (props) => {
+  return <Log log={props.calclog} />;
+};
 
-
-    return (
-        <>
-        <div>
-            Log: {
-                    props.calclog
-                }
-        </div>
-        </>
-
-    )
-    
-}
-
-
-export default BasicCalcLog
+export default BasicCalcLog;
