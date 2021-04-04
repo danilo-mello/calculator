@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect } from "react";
 import BasicCalcKeyPad from "./BasicCalcKeyPad";
 import BasicCalcLog from "./BasicCalcLog";
 import { CalcContext } from "../../context/CalcProvider";
+import Textarea from "../UI/Textarea";
+import Log from "../UI/Log";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 
@@ -24,13 +26,15 @@ const BasicCalcHooks = () => {
           <div className="h-2/3 w-full">
             <BasicCalcLog calclog={calcContext.calclog} />
           </div>
+
           <Input type="text" defaultValue={result} placeholder="Result" />
           <Button button="Next" />
         </div>
-        <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex items-center justify-center border">
+        <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex items-center justify-center p-2 border">
           <BasicCalcKeyPad onClick={onClickHandler} />
         </div>
       </div>
+
       {/* <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex items-center justify-end border">
         <div className="w-3/4 lg:w-80 border">
           <BasicCalcLog calclog={calcContext.calclog} />
