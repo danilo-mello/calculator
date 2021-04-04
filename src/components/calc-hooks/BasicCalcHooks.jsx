@@ -9,6 +9,8 @@ import Button from "../UI/Button";
 
 const BasicCalcHooks = () => {
   const [result, setResult] = useState("");
+  const [calclog, setCalclog] = useState([]);
+
   const calcContext = useContext(CalcContext);
 
   const onClickHandler = (button) => {
@@ -17,7 +19,9 @@ const BasicCalcHooks = () => {
 
   useEffect(() => {
     setResult(calcContext.result);
-  }, [calcContext.result]);
+    setCalclog(calcContext.calclog);
+    console.log(calclog);
+  }, [calcContext.result, calcContext.calclog]);
 
   return (
     <div className="BasicCalc">
@@ -37,7 +41,9 @@ const BasicCalcHooks = () => {
 
       {/* <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex items-center justify-end border">
         <div className="w-3/4 lg:w-80 border">
+          <Log log={calcContext.calclog} />
           <BasicCalcLog calclog={calcContext.calclog} />
+          <input type="text" defaultValue={result} />
           <div className="mt-4">
             <Input type="text" defaultValue={result} placeholder="Result" />
           </div>
