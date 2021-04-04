@@ -1,18 +1,15 @@
 import React from "react";
-import Log from "../UI/Log";
-import Textarea from "../UI/Textarea";
 
-const BasicCalcLog = (props) => {
-  return <Log log={props.calclog} />;
+const BasicCalcLog = ({ log }) => {
+  const logMap = log.map((l, index) => <li key={index}>{l}</li>);
+
+  return (
+    <div className="Log">
+      Log
+      <br />
+      <ul>{logMap}</ul>
+    </div>
+  );
 };
 
 export default BasicCalcLog;
-
-// return <Log calclog={props.calclog} />;
-// return <Textarea textarea={props.calclog} />;
-
-{
-  /* <input type="textarea" placeholder="Log" className="Log">
-  {calclog}
-</input> */
-}

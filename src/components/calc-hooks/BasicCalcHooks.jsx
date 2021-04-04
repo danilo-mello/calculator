@@ -1,9 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
+
+import { CalcContext } from "../../context/CalcProvider";
 import BasicCalcKeyPad from "./BasicCalcKeyPad";
 import BasicCalcLog from "./BasicCalcLog";
-import { CalcContext } from "../../context/CalcProvider";
-import Textarea from "../UI/Textarea";
-import Log from "../UI/Log";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 
@@ -28,7 +27,7 @@ const BasicCalcHooks = () => {
       <div className="h-2/3 w-2/3 flex flex-wrap border">
         <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex flex-wrap content-between p-2 border">
           <div className="h-2/3 w-full">
-            <BasicCalcLog calclog={calcContext.calclog} />
+            <BasicCalcLog log={calcContext.calclog} />
           </div>
 
           <Input type="text" defaultValue={result} placeholder="Result" />
