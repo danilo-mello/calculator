@@ -1,7 +1,15 @@
 import React from "react";
 
-const Textarea = ({ textarea }) => {
-  return <textarea className="bg-gray-800">{textarea}</textarea>;
+const Textarea = ({ id, type, onChange, placeholder, defaultValue }) => {
+  return (
+    <textarea
+      id={id}
+      onChange={onChange}
+      placeholder={placeholder}
+      defaultValue={defaultValue}
+      className="Textarea"
+    />
+  );
 };
 
 export default Textarea;

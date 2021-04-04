@@ -5,9 +5,8 @@ import Application from "./components/Application";
 import UserProvider from "./context/UserProvider";
 import CalcProvider from "./context/CalcProvider";
 import LogProvider from "./context/LogProvider";
-import background from "./assets/img/bg1.png";
+import background from "./assets/img/bg.png";
 import NavBar from "./components/UI/NavBar";
-import SaveLog from "./components/log/SaveLog";
 
 function App() {
   return (
