@@ -24,13 +24,11 @@ const CalcProvider = (props) => {
                 checkResult = result
 
                 try {
-                    checkResult = (evaluate(checkResult) || "" ) + ""
-                    
+                    checkResult = (evaluate(checkResult) || 0 ) + ""
+                    console.log(checkResult)
 
                     if (result !== checkResult) {
-                        // setCalclog(calclog + "\n" + result + " = " + checkResult + "\n")
                         setCalclog((calclog) => [...calclog, result + " = " + checkResult])
-
                     }
 
                 } catch (e) {
@@ -61,7 +59,7 @@ const CalcProvider = (props) => {
                     checkResult = pow(result, 2)
                 
                     if (result !== checkResult) {
-                    // setCalclog(calclog + "\n" + result + "² = " + checkResult + "\n")
+
                     setCalclog((calclog) => [...calclog, result + "² = " + checkResult])
 
                 }
@@ -77,7 +75,7 @@ const CalcProvider = (props) => {
                     checkResult = sqrt(result)
                 
                     if (result !== checkResult) {
-                    // setCalclog(calclog + "\n√" + result + " = " + checkResult + "\n")
+
                     setCalclog((calclog) => [...calclog, "√" + result + " = " + checkResult])
 
                 }
@@ -89,10 +87,11 @@ const CalcProvider = (props) => {
                 setResult(checkResult)
 
             } else {
-                if (checkResult === "error") {
-                    setResult("")
-                }
+                if (result === "error") {
+                    setResult(button)
+                } else {
                 setResult(result + button)
+                }
             }
 
     }
