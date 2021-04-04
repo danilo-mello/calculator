@@ -4,10 +4,11 @@ const BasicCalcLog = ({ log }) => {
   const logMap = log.map((l, index) => <li key={index}>{l}</li>);
 
   return (
-    <div className="Log">
-      Log
-      <br />
-      <ul>{logMap}</ul>
+    <div contenteditable="true" className="Log">
+      <ul>
+        <li>Log</li>
+        {logMap}
+      </ul>
     </div>
   );
 };

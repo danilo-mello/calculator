@@ -19,7 +19,6 @@ const BasicCalcHooks = () => {
   useEffect(() => {
     setResult(calcContext.result);
     setCalclog(calcContext.calclog);
-    console.log(calclog);
   }, [calcContext.result, calcContext.calclog]);
 
   return (
