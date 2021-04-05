@@ -1,14 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
+
+import { CalcContext } from "../../context/CalcProvider";
 import BasicCalcKeyPad from "./BasicCalcKeyPad";
 import BasicCalcLog from "./BasicCalcLog";
-import { CalcContext } from "../../context/CalcProvider";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
-import Log from "../UI/Log";
 
 const BasicCalcHooks = () => {
   const [result, setResult] = useState("");
-  const [calclog, setCalclog] = useState([])
+  const [calclog, setCalclog] = useState([]);
 
   const calcContext = useContext(CalcContext);
 
@@ -23,25 +23,25 @@ const BasicCalcHooks = () => {
 
   return (
     <div className="BasicCalc">
-      <div className="h-2/3 w-2/3 flex flex-wrap border">
+      <div className="h-3/4 lg:h-2/3 w-4/5 sm:w-2/3 flex flex-wrap border">
         <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex flex-wrap content-between p-2 border">
-          <div className="h-2/3 w-full">
+          <div className="h-1/2 lg:h-2/3 w-full">
             {/* <BasicCalcLog calclog={calcContext.calclog} /> */}
              <Log log={calcContext.calclog} />
           </div>
-          <Input type="text" defaultValue={result} placeholder="Result" />
+          <Input type="text" placeholder="Result" defaultValue={result} />
           <Button button="Next" />
         </div>
-        <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex items-center justify-center border">
+        <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex items-center justify-center p-2 border">
           <BasicCalcKeyPad onClick={onClickHandler} />
         </div>
       </div>
+
       {/* <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex items-center justify-end border">
         <div className="w-3/4 lg:w-80 border">
-
           <Log log={calcContext.calclog} />
-          {/* <BasicCalcLog calclog={calcContext.calclog} /> */}
-          {/* <input type="text" defaultValue={result} /> */}
+          <BasicCalcLog calclog={calcContext.calclog} />
+          <input type="text" defaultValue={result} />
           <div className="mt-4">
             <Input type="text" defaultValue={result} placeholder="Result" />
           </div>
