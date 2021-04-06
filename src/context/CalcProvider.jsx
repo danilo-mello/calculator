@@ -24,8 +24,7 @@ const CalcProvider = (props) => {
                 checkResult = result
 
                 try {
-                    checkResult = (evaluate(checkResult) || 0 ) + ""
-                    console.log(checkResult)
+                    checkResult = (evaluate(checkResult) || 0 ) + ""    
 
                     if (result !== checkResult) {
                         setCalclog((calclog) => [...calclog, result + " = " + checkResult])

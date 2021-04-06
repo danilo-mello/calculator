@@ -5,6 +5,8 @@ import BasicCalcKeyPad from "./BasicCalcKeyPad";
 import BasicCalcLog from "./BasicCalcLog";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
+import Log from "../UI/Log";
+
 
 const BasicCalcHooks = () => {
   const [result, setResult] = useState("");
@@ -26,8 +28,8 @@ const BasicCalcHooks = () => {
       <div className="h-3/4 lg:h-2/3 w-4/5 sm:w-2/3 flex flex-wrap border">
         <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex flex-wrap content-between p-2 border">
           <div className="h-1/2 lg:h-2/3 w-full">
-            {/* <BasicCalcLog calclog={calcContext.calclog} /> */}
-             <Log log={calcContext.calclog} />
+            <Log calclog={calclog} />
+             {/* <Log log={calcContext.calclog} /> */}
           </div>
           <Input type="text" placeholder="Result" defaultValue={result} />
           <Button button="Next" />
@@ -47,9 +49,9 @@ const BasicCalcHooks = () => {
           </div>
         {/* </div>  
       </div> */}
-      <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex items-center justify-start border">
+      {/* <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex items-center justify-start border">
         <BasicCalcKeyPad onClick={onClickHandler} />
-      </div> */}
+      </div>  */}
     </div>
   );
 };

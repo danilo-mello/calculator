@@ -20,7 +20,7 @@ function Application() {
   return user ? (
     <>
       {/* <h1>WITH HOOKS</h1> */}
-      {/* <BasicCalcHooks /> */}
+      <BasicCalcHooks />
       {/* <h1>WITH REDUX</h1> */}
       {/* <BasicCalcRedux /> */}
       {/* <hr /> */}
@@ -35,7 +35,7 @@ function Application() {
           Sign out
         </button>{" "}
       </div> */}
-      <SaveLog />
+      {/* <SaveLog /> */}
       {/* <LogListPage />
       <LogForm /> */}
     </>
