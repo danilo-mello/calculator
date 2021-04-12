@@ -2,6 +2,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Application from "./components/Application";
+import SaveLog from "./components/log/SaveLog";
 import UserProvider from "./context/UserProvider";
 import CalcProvider from "./context/CalcProvider";
 import LogProvider from "./context/LogProvider";
@@ -19,6 +20,8 @@ function App() {
             </Route>
             <Switch>
               <Route exact path="/" component={Application} />
+              <Route exact path="/savelog" component={SaveLog} />
+
             </Switch>
           </UserProvider>
         </CalcProvider>

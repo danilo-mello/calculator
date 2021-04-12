@@ -1,12 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
-
 import { CalcContext } from "../../context/CalcProvider";
 import BasicCalcKeyPad from "./BasicCalcKeyPad";
-import BasicCalcLog from "./BasicCalcLog";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 import Log from "../UI/Log";
-
+import { Link } from 'react-router-dom'
 
 const BasicCalcHooks = () => {
   const [result, setResult] = useState("");
@@ -29,29 +27,17 @@ const BasicCalcHooks = () => {
         <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex flex-wrap content-between p-2 border">
           <div className="h-1/2 lg:h-2/3 w-full">
             <Log calclog={calclog} />
-             {/* <Log log={calcContext.calclog} /> */}
           </div>
           <Input type="text" placeholder="Result" defaultValue={result} />
-          <Button button="Next" />
+          <Link to={{pathname:'/savelog'}}>
+            <Button button="Next" />
+          </Link>
+          
         </div>
         <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex items-center justify-center p-2 border">
           <BasicCalcKeyPad onClick={onClickHandler} />
         </div>
       </div>
-
-      {/* <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex items-center justify-end border">
-        <div className="w-3/4 lg:w-80 border">
-          <Log log={calcContext.calclog} />
-          <BasicCalcLog calclog={calcContext.calclog} />
-          <input type="text" defaultValue={result} />
-          <div className="mt-4">
-            <Input type="text" defaultValue={result} placeholder="Result" />
-          </div>
-        {/* </div>  
-      </div> */}
-      {/* <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex items-center justify-start border">
-        <BasicCalcKeyPad onClick={onClickHandler} />
-      </div>  */}
     </div>
   );
 };
