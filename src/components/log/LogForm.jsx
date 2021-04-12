@@ -1,10 +1,12 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 import { CalcContext } from "../../context/CalcProvider";
 import { LogContext } from "../../context/LogProvider";
 import { UserContext } from "../../context/UserProvider";
 import Input from "../UI/Input";
 import Textarea from "../UI/Textarea";
 import Button from "../UI/Button";
+import {useHistory} from 'react-router-dom';
+
 
 const LogForm = () => {
   const calcContext = useContext(CalcContext);
@@ -28,6 +30,10 @@ const LogForm = () => {
     };
     dateUser();
   }, [calcContext, userContext.uid]);
+
+  const history = useHistory();
+
+  const handleCancel = useCallback(() => history.push('/'), [history]);
 
   const onSaveLogHandler = (e) => {
     e.preventDefault();
@@ -62,17 +68,6 @@ const LogForm = () => {
           }}
           placeholder="Title"
         />
-        {/* <div className="h-1/2 lg:h-2/3 w-full">
-              <BasicCalcLog log={calcContext.calclog} />
-            </div> */}
-        {/* <Input
-          id="log"
-          type="text-area"
-          onChange={(e) => {
-            setLog(e.target.value);
-          }}
-          placeholder="Log"
-        /> */}
         <Textarea
           id="log"
           onChange={(e) => {
@@ -99,29 +94,11 @@ const LogForm = () => {
           }}
           placeholder="Comment"
         />
-        <Button button="Cancel" />
+        <Button button="Cancel" onClick={handleCancel} />
         <Button type="submit" button="Save" />
       </div>
     </form>
 
-    // <div>
-    //     <form onSubmit={e => {onSaveLogHandler(e)}}>
-    //         <label>Title: </label>
-    //         <input type="text" id="title" onChange={(e) => {setTitle(e.target.value)}} />
-
-    //         <label>Log: </label>
-    //         <input type="text-area" id="log" defaultValue={calcContext.calclog} onChange={(e) => {setLog(e.target.value)}} />
-
-    //         <label>Result: </label>
-    //         <input type="text" id="result" defaultValue={calcContext.result} onChange={(e) => {setResult(e.target.value)}} />
-
-    //         <label>Comment: </label>
-    //         <input type="text-area" id="comment" onChange={(e) => {setComment(e.target.value)}} />
-
-    //         <button type="submit">Confirm Save Log</button>
-    //     </form>
-
-    // </div>
   );
 };
 
