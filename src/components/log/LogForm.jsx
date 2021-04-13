@@ -30,7 +30,7 @@ const LogForm = () => {
     };
     
     userContext && dateUser();
-  }, [calcContext]);
+  }, [calcContext, userContext]);
 
   const history = useHistory();
 
