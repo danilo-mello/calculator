@@ -5,13 +5,12 @@ import "firebase/storage";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDC_SefS8D4x2HQUodedPkdmvTJgMS_T78",
-    authDomain: "calc-log.firebaseapp.com",
-    projectId: "calc-log",
-    storageBucket: "calc-log.appspot.com",
-    messagingSenderId: "697506432329",
-    appId: "1:697506432329:web:8fe9ecc4d358acea250698",
-    measurementId: "G-K3XC3LG0FL"
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId
 };
 
 firebase.initializeApp(firebaseConfig);

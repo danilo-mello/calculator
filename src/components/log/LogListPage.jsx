@@ -8,21 +8,23 @@ const LogListPage = () => {
     const logContext = useContext(LogContext)
     const userContext = useContext(UserContext)
 
-    const [userLogs, setUserLogs] = useState([])
+    // const [userLogs, setUserLogs] = useState([])
 
 
     useEffect(() => {
-        logContext.loadingUserLogs(userContext.uid)
-        setUserLogs(logContext.userLogs)
 
-    }, [logContext.userLogs, logContext, userContext.uid])
+        
+        userContext && logContext.loadingUserLogs(userContext.uid)
+        
+
+    }, [logContext, userContext])
 
     return (
 
         <div>
 
             {
-            userLogs.map(({id, title, log, result, comment, dateCreated, dateModified, active }) => (
+            logContext.userLogs && logContext.userLogs.map(({id, title, log, result, comment, dateCreated, dateModified, active }) => (
                 <div key={id}> 
                     <p>id: {id}, title: {title}, log: {log}, result: {result}, comment: {comment}, date created: {dateCreated}, date modified: {dateModified}, active: {active} </p>
                 </div>
