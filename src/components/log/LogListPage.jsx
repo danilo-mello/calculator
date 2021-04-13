@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { LogContext } from "../../context/LogProvider";
 import { UserContext } from "../../context/UserProvider";
 
@@ -8,14 +8,9 @@ const LogListPage = () => {
     const logContext = useContext(LogContext)
     const userContext = useContext(UserContext)
 
-    // const [userLogs, setUserLogs] = useState([])
-
-
     useEffect(() => {
 
-        
         userContext && logContext.loadingUserLogs(userContext.uid)
-        
 
     }, [logContext, userContext])
 

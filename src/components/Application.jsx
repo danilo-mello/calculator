@@ -1,10 +1,7 @@
 import BasicCalcHooks from "./calc-hooks/BasicCalcHooks";
-import SaveLog from "./log/SaveLog";
-import LogListPage from "./log/LogListPage";
 import SignIn from "./auth/SignIn";
 import { UserContext } from "../context/UserProvider";
 import React, { useContext } from "react";
-import LogForm from "./log/LogForm";
 
 function Application() {
   const user = useContext(UserContext);
@@ -18,9 +15,6 @@ function Application() {
   return user ? (
     <>
       <BasicCalcHooks />
-
-      {/* <LogListPage />
-      <LogForm /> */}
     </>
   ) : (
     <div className="h-full w-full flex items-center justify-center border-2">
