@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {auth} from "../../firebase";
 
 const NavBar = ({ fixed }) => {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -8,7 +9,7 @@ const NavBar = ({ fixed }) => {
       <nav className="relative flex flex-wrap items-center justify-between py-4 border">
         <div className="container mx-auto flex flex-wrap items-center justify-between border">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            <a className="font-medium inline-block py-2 border" href="#">
+            <a className="font-medium inline-block py-2 border" href="/">
               Calc Log
             </a>
             <button
@@ -30,7 +31,7 @@ const NavBar = ({ fixed }) => {
               <li className="nav-item">
                 <a
                   className="p-2 flex items-center font-medium hover:opacity-75 border"
-                  href="#"
+                  href="/savelog"
                 >
                   New Log
                 </a>
@@ -38,15 +39,17 @@ const NavBar = ({ fixed }) => {
               <li className="nav-item">
                 <a
                   className="p-2 flex items-center font-medium hover:opacity-75 border"
-                  href="#"
+                  href="/mylogs"
                 >
-                  My Log
+                  My Logs
                 </a>
               </li>
               <li className="nav-item">
                 <a
                   className="p-2 flex items-center font-medium hover:opacity-75 border"
-                  href="#"
+                  onClick = {() => {auth.signOut()}}
+                  href="/"
+
                 >
                   Sign Out
                 </a>

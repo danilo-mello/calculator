@@ -19,7 +19,6 @@ function Application() {
     <>
       <BasicCalcHooks />
 
-      {/* <SaveLog /> */}
       {/* <LogListPage />
       <LogForm /> */}
     </>

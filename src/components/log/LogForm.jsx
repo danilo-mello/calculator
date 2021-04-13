@@ -28,8 +28,9 @@ const LogForm = () => {
       setDateModified(date.getTime());
       setUserId(userContext.uid);
     };
-    dateUser();
-  }, [calcContext, userContext.uid]);
+    
+    userContext && dateUser();
+  }, [calcContext]);
 
   const history = useHistory();
 
