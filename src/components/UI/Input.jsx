@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = ({ id, type, onChange, placeholder, defaultValue }) => {
+const Input = ({ id, type, onChange, placeholder, defaultValue, onKeyUp }) => {
   return (
     <input
       id={id}
@@ -9,6 +9,7 @@ const Input = ({ id, type, onChange, placeholder, defaultValue }) => {
       placeholder={placeholder}
       defaultValue={defaultValue}
       className="Input"
+      onKeyUp={(e) => {onKeyUp(e)}}
     />
   );
 };

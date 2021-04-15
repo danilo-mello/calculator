@@ -6,7 +6,7 @@ import Button from "../UI/Button";
 import Log from "../UI/Log";
 import { Link } from 'react-router-dom'
 
-const BasicCalcHooks = () => {
+const BasicCalc = () => {
   const [result, setResult] = useState("");
   const [calclog, setCalclog] = useState([]);
 
@@ -14,6 +14,11 @@ const BasicCalcHooks = () => {
 
   const onClickHandler = (button) => {
     calcContext.onInput(button);
+  };
+
+  const onKeyUpHandler = (e) => {
+    console.log(e.key)
+    calcContext.onInput(e.key);
   };
 
   useEffect(() => {
@@ -28,7 +33,7 @@ const BasicCalcHooks = () => {
           <div className="h-1/2 lg:h-2/3 w-full">
             <Log calclog={calclog} />
           </div>
-          <Input type="text" placeholder="Result" defaultValue={result} />
+          <Input type="text" placeholder="Result" defaultValue={result} onKeyUp={onKeyUpHandler} />
           <Link to={{pathname:'/savelog'}}>
             <Button button="Next" />
           </Link>
@@ -42,4 +47,4 @@ const BasicCalcHooks = () => {
   );
 };
 
-export default BasicCalcHooks;
+export default BasicCalc;
