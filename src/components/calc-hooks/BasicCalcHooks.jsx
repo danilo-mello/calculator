@@ -4,7 +4,7 @@ import BasicCalcKeyPad from "./BasicCalcKeyPad";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 import Log from "../UI/Log";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const BasicCalcHooks = () => {
   const [result, setResult] = useState("");
@@ -28,11 +28,18 @@ const BasicCalcHooks = () => {
           <div className="h-1/2 lg:h-2/3 w-full">
             <Log calclog={calclog} />
           </div>
-          <Input type="text" placeholder="Result" defaultValue={result} />
-          <Link to={{pathname:'/savelog'}}>
-            <Button button="Next" />
-          </Link>
-          
+          <Input
+            type="text"
+            placeholder="Result"
+            defaultValue={result}
+            required={true}
+          />
+          <Button button="Cancel" />
+          {result ? (
+            <Link to={{ pathname: "/savelog" }} className="w-full">
+              <Button type="submit" button="Next" />
+            </Link>
+          ) : null}
         </div>
         <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex items-center justify-center p-2 border">
           <BasicCalcKeyPad onClick={onClickHandler} />
