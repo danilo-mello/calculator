@@ -4,7 +4,7 @@ import Key from "./Key";
 
 const BasicCalcKeyPad = (props) => {
   return (
-    <div className="h-full w-full sm:w-3/4 lg:w-5/6 flex flex-wrap justify-center border">
+    <div className="h-full w-full sm:w-3/4 lg:w-full xl:w-5/6 flex flex-wrap justify-center border">
       {/* <div className="w-80 flex flex-wrap justify-center border"> */}
       {Keyboard.map((keyboard, index) => (
         <div
