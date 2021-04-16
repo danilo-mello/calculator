@@ -21,7 +21,7 @@ const Keyboard = [
   { id: "+", keyboard: "+" },
   { id: "C", keyboard: "C" },
   { id: "%", keyboard: "%" },
-  { id: "backspace", keyboard: "←" },
+  { id: "Backspace", keyboard: "←" },
 ];
 
 export default Keyboard;

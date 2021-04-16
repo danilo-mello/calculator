@@ -41,18 +41,25 @@ const LogForm = () => {
   const onSaveLogHandler = (e) => {
     e.preventDefault();
 
-    logContext.onSaveLog({
-      title: title,
-      log: log,
-      result: result,
-      comment: comment,
-      meta: {
-        dateCreated: dateCreated,
-        dateModified: dateModified,
-        active: "true",
-        userId: userId,
-      },
-    });
+    if (title && log && result && comment){
+      logContext.onSaveLog({
+        title: title,
+        log: log,
+        result: result,
+        comment: comment,
+        meta: {
+          dateCreated: dateCreated,
+          dateModified: dateModified,
+          active: "true",
+          userId: userId,
+        },
+      });
+    } else (
+      alert("Please fill up all fields!!")
+    )
+
+
+
   };
 
   return (

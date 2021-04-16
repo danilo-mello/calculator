@@ -1,4 +1,4 @@
-import BasicCalcHooks from "./calc-hooks/BasicCalcHooks";
+import BasicCalc from "./basic-calc/BasicCalc";
 import SignIn from "./auth/SignIn";
 import { UserContext } from "../context/UserProvider";
 import React, { useContext } from "react";
@@ -14,7 +14,7 @@ function Application() {
 
   return user ? (
     <>
-      <BasicCalcHooks />
+      <BasicCalc />
     </>
   ) : (
     <div className="h-full w-full flex items-center justify-center border-2">

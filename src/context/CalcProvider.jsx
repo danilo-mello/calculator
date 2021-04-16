@@ -18,7 +18,7 @@ const CalcProvider = (props) => {
 
     const onInput = (button) => {
 
-        if(button === "="){
+        if(button === "=" || button === "Enter"){
 
                 var checkResult = ''
                 checkResult = result
@@ -40,7 +40,7 @@ const CalcProvider = (props) => {
             else if(button === "C"){
                 setResult("")
             }
-            else if(button === "backspace"){
+            else if(button === "Backspace"){
                 if (result === "error") {
                     checkResult = ""
                 } else {
