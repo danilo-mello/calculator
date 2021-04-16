@@ -5,8 +5,7 @@ import { UserContext } from "../../context/UserProvider";
 import Input from "../UI/Input";
 import Textarea from "../UI/Textarea";
 import Button from "../UI/Button";
-import {useHistory} from 'react-router-dom';
-
+import { Link, useHistory } from "react-router-dom";
 
 const LogForm = () => {
   const calcContext = useContext(CalcContext);
@@ -28,13 +27,16 @@ const LogForm = () => {
       setDateModified(date.getTime());
       setUserId(userContext.uid);
     };
-    
+
     userContext && dateUser();
   }, [calcContext, userContext]);
 
   const history = useHistory();
 
-  const handleCancel = useCallback(() => history.push('/'), [history]);
+  const handleCancel = useCallback(() => history.push("/"), [history]);
+  const handleSaveMyLog = () => {
+    history.push("/mylogs");
+  };
 
   const onSaveLogHandler = (e) => {
     e.preventDefault();
@@ -68,6 +70,7 @@ const LogForm = () => {
             setTitle(e.target.value);
           }}
           placeholder="Title"
+          required={true}
         />
         <Textarea
           id="log"
@@ -76,6 +79,7 @@ const LogForm = () => {
           }}
           placeholder="Log"
           defaultValue={calcContext.calclog}
+          required={true}
         />
         <Input
           id="result"
@@ -85,6 +89,7 @@ const LogForm = () => {
           }}
           placeholder="Result"
           defaultValue={calcContext.result}
+          required={true}
         />
       </div>
       <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex flex-wrap content-between p-2 border">
@@ -95,11 +100,12 @@ const LogForm = () => {
           }}
           placeholder="Comment"
         />
-        <Button button="Cancel" onClick={handleCancel} />
-        <Button type="submit" button="Save" />
+        <Button button="Back" onClick={handleCancel} />
+        {title && log && result ? (
+          <Button type="submit" button="Save" onClick={handleSaveMyLog} />
+        ) : null}
       </div>
     </form>
-
   );
 };
 
