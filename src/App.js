@@ -23,8 +23,6 @@ function App() {
               <Route exact path="/" component={Application} />
               <Route exact path="/savelog" component={SaveLog} />
               <Route exact path="/mylogs" component={LogListPage} />
-
-
             </Switch>
           </UserProvider>
         </CalcProvider>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {auth} from "../../firebase";
+import { auth } from "../../firebase";
 
 const NavBar = ({ fixed }) => {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -28,14 +28,14 @@ const NavBar = ({ fixed }) => {
             id="example-navbar-danger"
           >
             <ul className="flex flex-col lg:flex-row lg:ml-auto">
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a
                   className="p-2 flex items-center font-medium hover:opacity-75 border"
                   href="/savelog"
                 >
                   New Log
                 </a>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <a
                   className="p-2 flex items-center font-medium hover:opacity-75 border"
@@ -47,9 +47,10 @@ const NavBar = ({ fixed }) => {
               <li className="nav-item">
                 <a
                   className="p-2 flex items-center font-medium hover:opacity-75 border"
-                  onClick = {() => {auth.signOut()}}
+                  onClick={() => {
+                    auth.signOut();
+                  }}
                   href="/"
-
                 >
                   Sign Out
                 </a>
