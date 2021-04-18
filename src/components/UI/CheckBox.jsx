@@ -7,7 +7,7 @@ const CheckBox = ({ id, name, value, labelfor, label }) => {
         id={id}
         type="checkbox"
         value={value}
-        className="cursor-pointer mr-2"
+        className="cursor-pointer mr-1"
       />
       <label for={labelfor}>{label}</label>
     </div>

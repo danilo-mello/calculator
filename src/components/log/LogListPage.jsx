@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { LogContext } from "../../context/LogProvider";
 import { UserContext } from "../../context/UserProvider";
 import CheckBox from "../UI/CheckBox";
 import SearchBar from "../UI/SearchBar";
+import LogModal from "./LogModal";
 
 const LogListPage = () => {
   const logContext = useContext(LogContext);
@@ -10,10 +11,20 @@ const LogListPage = () => {
 
   useEffect(() => {
     userContext && logContext.loadingUserLogs(userContext.uid);
-  }, [logContext, userContext]);
+  }, [userContext]);
+
+  // useEffect(() => {
+  //   userContext && logContext.loadingUserLogs(userContext.uid);
+  // }, [logContext, userContext]);
+
+  const [modal, setModal] = useState(false);
+  const handleModal = (e) => {
+    console.log(e.target.id);
+    setModal(true);
+  };
 
   return (
-    <div className="LogList">
+    <div className="LogList relative">
       <div className="w-5/6">
         <div className="Filter">
           <CheckBox
@@ -42,21 +53,19 @@ const LogListPage = () => {
               dateModified,
               active,
             }) => (
-              <div key={id} className="MyLog">
+              <div key={id} id={id} onClick={handleModal} className="MyLog">
                 <p>date created: {dateCreated}</p>
                 <p>title: {title}</p>
                 <p>result: {result}</p>
                 <p>comment: {comment}</p>
                 <p>Edit</p>
                 <p>×</p>
-                {/* <p>
-                  id: {id}, title: {title}, log: {log}, result: {result},
-                  comment: {comment}, date created: {dateCreated}, date
-                  modified: {dateModified}, active: {active}{" "}
-                </p> */}
               </div>
             )
           )}
+        {/* {modal ? (
+          <LogModal id={logContext.userLogs && logContext.userLogs.id} />
+        ) : null} */}
       </div>
     </div>
   );
