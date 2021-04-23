@@ -16,13 +16,22 @@ const BasicCalc = () => {
   const onClickHandler = (button) => {
     calcContext.onInput(button);
   };
+
   const handleSaveLog = () => {
     history.push("/savelog");
   };
 
   const onKeyUpHandler = (e) => {
-    console.log(e.key)
     calcContext.onInput(e.key);
+    setResult(calcContext.result);
+  };
+
+  const onInputChange = () => {
+    setResult(calcContext.result);
+  };
+
+  const cancelHandler = () => {
+    calcContext.reset();
   };
 
   useEffect(() => {
@@ -41,11 +50,12 @@ const BasicCalc = () => {
           <Input
             type="text"
             placeholder="Result"
-            defaultValue={result}
+            value={result}
             required={true}
             onKeyUp={onKeyUpHandler}
+            onChange={onInputChange}
           />
-          <Button button="Cancel" />
+          <Button onClick={cancelHandler} button="Cancel" />
           {result ? (
             <Button type="submit" button="Next" onClick={handleSaveLog} />
           ) : null}

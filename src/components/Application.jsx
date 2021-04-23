@@ -27,8 +27,11 @@ function Application() {
           temporibus. Inventore fugiat praesentium eaque, minima officia rerum
           quia maxime reiciendis?
         </p>
+        
         <SignIn />
+        <p> © 2021 <a target="_blank" href="http://danilomello.io">danilo</a> and <a target="_blank" href="http://ayumitanaka.net">ayumi</a>.  All rights reserved. </p>
       </div>
+      
     </div>
   );
 }
