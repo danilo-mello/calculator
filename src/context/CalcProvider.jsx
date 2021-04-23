@@ -8,95 +8,197 @@ export const CalcContext = createContext({
     calclog: [],
     onInput: () => {},
     result: "",
+    reset: () => {},
 
 })
 
 const CalcProvider = (props) => {
 
+    const keys = ["Shift", "ArrowUp", "ArrowLeft", "ArrowRight", "ArrowDown", "Tab", "Control", "CapsLock","Alt", ~"`", "~", "?"]
+
     const [calclog, setCalclog] = useState([])
     const [result, setResult] = useState("")
 
+    const reset = () => {
+        setCalclog([])
+        setResult("")
+    }
+
     const onInput = (button) => {
+
+    //     switch (input) {
+    //         case "=" || "Enter":
+    //             console.log("enter or =")
+    //             var checkResult = ''
+    //             checkResult = result
+    
+    //             try {
+    //                 checkResult = (evaluate(checkResult) || 0 ) + ""    
+    
+    //                 if (result !== checkResult) {
+    //                     setCalclog((calclog) => [...calclog, result + " = " + checkResult])
+    //                 }
+    
+    //             } catch (e) {
+    //                 checkResult =  "error"
+    //             }
+    
+    //             setResult(checkResult)
+    //             break;
+            
+    //         case "C" || "Delete":
+
+    //             setResult("")
+    //             break;
+            
+    //         case "Backspace":
+
+    //             if (result === "error") {
+    //                 checkResult = ""
+    //             } else {
+    //                 try {
+    //                     checkResult = result.slice(0, -1)
+    //                 } catch (e) {
+    //                     checkResult =  ""
+    //                 }
+    //             }
+    
+    //             setResult(checkResult)
+    //             break;
+    
+    //         case "square":
+
+    //             try {
+
+    //                 checkResult = pow(result, 2)
+    //                 if (result !== checkResult) {
+    //                     setCalclog((calclog) => [...calclog, result + "² = " + checkResult])
+    //                 }
+    
+    //             } catch (e) {
+    //                 checkResult =  "error"
+    //             }
+
+    //             setResult(checkResult)
+    //             break;
+
+    //         case "squareroot":
+
+    //             try {
+
+    //                 checkResult = sqrt(result)
+    //                 if (result !== checkResult) {
+    //                     setCalclog((calclog) => [...calclog, "√" + result + " = " + checkResult])
+    //                 }
+    
+    //             } catch (e) {
+    //                 checkResult =  "error"
+    //             }
+    
+    //             setResult(checkResult)
+    //             break;
+
+    //         default:
+
+    //             if (keys.includes(input)){
+    //                 break;
+    //             }
+
+    //             if (result === "error") {
+    //                 setResult(input)
+    //             } else {
+    //             setResult(result + input)
+    //             }
+    //             break;
+    //     }
+    // }
 
         if(button === "=" || button === "Enter"){
 
-                var checkResult = ''
-                checkResult = result
+            var checkResult = ''
+            checkResult = result
 
-                try {
-                    checkResult = (evaluate(checkResult) || 0 ) + ""    
+            try {
+                checkResult = (evaluate(checkResult) || 0 ) + ""    
 
-                    if (result !== checkResult) {
-                        setCalclog((calclog) => [...calclog, result + " = " + checkResult])
-                    }
-
-                } catch (e) {
-                    checkResult =  "error"
+                if (result !== checkResult) {
+                    setCalclog((calclog) => [...calclog, result + " = " + checkResult])
                 }
 
-                setResult(checkResult)
+            } catch (e) {
+                checkResult =  "error"
             }
 
-            else if(button === "C"){
-                setResult("")
-            }
-            else if(button === "Backspace"){
-                if (result === "error") {
-                    checkResult = ""
-                } else {
-                    try {
-                        checkResult = result.slice(0, -1)
-                    } catch (e) {
-                        checkResult =  ""
-                }
-                }
+            setResult(checkResult)
 
-                setResult(checkResult)
-            }
-            else if(button === "square"){
-                try {
-                    checkResult = pow(result, 2)
-                
-                    if (result !== checkResult) {
+        }
 
-                    setCalclog((calclog) => [...calclog, result + "² = " + checkResult])
-
-                }
-
-                } catch (e) {
-                    checkResult =  "error"
-                }
-                setResult(checkResult)
-                
-            }
-            else if(button === "squareroot"){
-                try {
-                    checkResult = sqrt(result)
-                
-                    if (result !== checkResult) {
-
-                    setCalclog((calclog) => [...calclog, "√" + result + " = " + checkResult])
-
-                }
-
-                } catch (e) {
-                    checkResult =  "error"
-                }
-
-                setResult(checkResult)
-
+        else if(button === "C"){
+            setResult("")
+        }
+        else if(button === "Delete"){
+            setResult("")
+        }
+        else if(button === "Backspace"){
+            if (result === "error") {
+                checkResult = ""
             } else {
-                if (result === "error") {
-                    setResult(button)
-                } else {
-                setResult(result + button)
-                }
+                try {
+                    checkResult = result.slice(0, -1)
+                } catch (e) {
+                    checkResult =  ""
             }
+            }
+
+            setResult(checkResult)
+        }
+        else if(button === "square"){
+            try {
+                checkResult = pow(result, 2)
+            
+                if (result !== checkResult) {
+
+                setCalclog((calclog) => [...calclog, result + "² = " + checkResult])
+
+            }
+
+            } catch (e) {
+                checkResult =  "error"
+            }
+            setResult(checkResult)
+            
+        }
+        else if(button === "squareroot"){
+            try {
+                checkResult = sqrt(result)
+            
+                if (result !== checkResult) {
+
+                setCalclog((calclog) => [...calclog, "√" + result + " = " + checkResult])
+
+            }
+
+            } catch (e) {
+                checkResult =  "error"
+            }
+
+            setResult(checkResult)
+
+        }else if(keys.includes(button)){
+            
+        
+        } else {
+            if (result === "error") {
+                setResult(button)
+            } else {
+            setResult(result + button)
+            }
+        }
 
     }
     
     return (
-        <CalcContext.Provider value={ { result: result, calclog: calclog, onInput: onInput, } }>
+        <CalcContext.Provider value={ { result: result, calclog: calclog, onInput: onInput, reset: reset } }>
             {props.children}
         </CalcContext.Provider>
     )
