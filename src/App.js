@@ -1,6 +1,6 @@
-// import "./App.css";
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+
 import Application from "./components/Application";
 import SaveLog from "./components/log/SaveLog";
 import LogListPage from "./components/log/LogListPage";
@@ -9,6 +9,8 @@ import CalcProvider from "./context/CalcProvider";
 import LogProvider from "./context/LogProvider";
 import background from "./assets/img/bg.png";
 import NavBar from "./components/UI/NavBar";
+import PageNotFound from "./components/PageNotFound";
+
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
               <Route exact path="/" component={Application} />
               <Route exact path="/savelog" component={SaveLog} />
               <Route exact path="/mylogs" component={LogListPage} />
+              <Route component={PageNotFound} />
             </Switch>
           </UserProvider>
         </CalcProvider>

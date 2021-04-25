@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { LogContext } from "../../context/LogProvider";
 import { UserContext } from "../../context/UserProvider";
 
 const LogModal = ({ id }) => {
   const logContext = useContext(LogContext);
-  const userContext = useContext(UserContext);
+  // const userContext = useContext(UserContext);
 
   // useEffect(() => {
   // userContext && logContext.loadingUserLogs(userContext.uid);

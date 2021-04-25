@@ -1,26 +1,30 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
+
+import { connect } from 'react-redux'
+
 import { LogContext } from "../../context/LogProvider";
 import { UserContext } from "../../context/UserProvider";
 import CheckBox from "../UI/CheckBox";
 import SearchBar from "../UI/SearchBar";
-import LogModal from "./LogModal";
+// import LogModal from "./LogModal";
 
-const LogListPage = () => {
+const LogListPage = ( { logs } ) => {
   const logContext = useContext(LogContext);
   const userContext = useContext(UserContext);
 
   useEffect(() => {
     userContext && logContext.loadingUserLogs(userContext.uid);
-  }, [userContext]);
+  }, [userContext, logContext]);
 
   // useEffect(() => {
   //   userContext && logContext.loadingUserLogs(userContext.uid);
   // }, [logContext, userContext]);
 
-  const [modal, setModal] = useState(false);
+  // const [modal, setModal] = useState(false);
+
   const handleModal = (e) => {
     console.log(e.target.id);
-    setModal(true);
+    // setModal(true);
   };
 
   return (
@@ -71,4 +75,10 @@ const LogListPage = () => {
   );
 };
 
-export default LogListPage;
+const mapStateToProps = (state) => {
+  return {
+    logs: state.log.userLogs
+  }
+}
+
+export default connect(mapStateToProps)(LogListPage);
