@@ -28,14 +28,7 @@ const NavBar = ({ fixed }) => {
             id="example-navbar-danger"
           >
             <ul className="flex flex-col lg:flex-row lg:ml-auto">
-              {/* <li className="nav-item">
-                <a
-                  className="p-2 flex items-center font-medium hover:opacity-75 border"
-                  href="/savelog"
-                >
-                  New Log
-                </a>
-              </li> */}
+
               <li className="nav-item">
                 <a
                   className="p-2 flex items-center font-medium hover:opacity-75 border"

@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect, useCallback } from "react";
+import { useHistory } from "react-router-dom";
+
 import { CalcContext } from "../../context/CalcProvider";
 import { LogContext } from "../../context/LogProvider";
 import { UserContext } from "../../context/UserProvider";
 import Input from "../UI/Input";
 import Textarea from "../UI/Textarea";
 import Button from "../UI/Button";
-import { Link, useHistory } from "react-router-dom";
 
 const LogForm = () => {
   const calcContext = useContext(CalcContext);
@@ -34,9 +35,6 @@ const LogForm = () => {
   const history = useHistory();
 
   const handleCancel = useCallback(() => history.push("/"), [history]);
-  const handleSaveMyLog = () => {
-    history.push("/mylogs");
-  };
 
   const onSaveLogHandler = (e) => {
     e.preventDefault();
@@ -54,13 +52,15 @@ const LogForm = () => {
           userId: userId,
         },
       });
+      history.push("/mylogs");
     } else (
       alert("Please fill up all fields!!")
     )
-
-
-
   };
+
+  const onKeyUpHandler = (e) => {
+    console.log(e.target.value)
+  }
 
   return (
     <form
@@ -78,6 +78,7 @@ const LogForm = () => {
           }}
           placeholder="Title"
           required={true}
+          onKeyUp={onKeyUpHandler}
         />
         <Textarea
           id="log"
@@ -95,8 +96,9 @@ const LogForm = () => {
             setResult(e.target.value);
           }}
           placeholder="Result"
-          defaultValue={calcContext.result}
+          value={calcContext.result}
           required={true}
+          onKeyUp={onKeyUpHandler}
         />
       </div>
       <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex flex-wrap content-between p-2 border">
@@ -109,7 +111,7 @@ const LogForm = () => {
         />
         <Button button="Back" onClick={handleCancel} />
         {title && log && result ? (
-          <Button type="submit" button="Save" onClick={handleSaveMyLog} />
+          <Button type="submit" button="Save" />
         ) : null}
       </div>
     </form>

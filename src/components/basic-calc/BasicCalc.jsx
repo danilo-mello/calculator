@@ -4,7 +4,7 @@ import BasicCalcKeyPad from "./BasicCalcKeyPad";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 import Log from "../UI/Log";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const BasicCalc = () => {
   const [result, setResult] = useState("");
