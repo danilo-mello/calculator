@@ -7,6 +7,7 @@ export const DELETE_LOG = 'DELETE_LOG'
 export const FETCH_LOGS_START = 'FETCH_LOGS_START'
 export const FETCH_LOGS_SUCCESS = 'FETCH_LOGS_SUCCESS'
 export const FETCH_LOGS_FAILURE = 'FETCH_LOGS_FAILURE'
+export const SORT_LOGS = 'SORT_LOGS'
 
 
 
@@ -85,5 +86,10 @@ export const updateLog = (log) => ({
 export const deleteLog = (obj) => ({
     type: DELETE_LOG,
     payload: obj
+})
+
+export const sortLogs = (sortBy) => ({
+    type: SORT_LOGS,
+    payload: sortBy
 })
 
