@@ -1,9 +1,14 @@
+
+import React, { useContext, useEffect } from "react";
+import { connect } from 'react-redux'
+
 import BasicCalc from "./basic-calc/BasicCalc";
 import SignIn from "./auth/SignIn";
 import { UserContext } from "../context/UserProvider";
-import React, { useContext } from "react";
+import { fetchLogsStartAsync } from '../redux/log/log.actions'
 
-function Application() {
+
+function Application({ fetchLogsStartAsync }) {
   const user = useContext(UserContext);
 
   const style = {
@@ -11,6 +16,11 @@ function Application() {
       WebkitTextStroke: "1px #FFF",
     },
   };
+
+  useEffect(() => {
+    user && fetchLogsStartAsync(user.uid)
+  }, [user, fetchLogsStartAsync])
+
 
   return user ? (
     <>
@@ -36,4 +46,8 @@ function Application() {
   );
 }
 
-export default Application;
+const mapDispatchToProps = (dispatch) => ({
+    fetchLogsStartAsync: (id) => dispatch(fetchLogsStartAsync(id)),
+})
+
+export default connect(null, mapDispatchToProps)(Application);

@@ -13,8 +13,6 @@ const LogProvider = (props) => {
     const [userLogs, setUserLogs] = useState([])
 
     const onSaveLog = (logInfo) => {
-
-        console.log(logInfo)
     
         fetch(`https://calc-log-default-rtdb.firebaseio.com/logs/${logInfo.meta.userId}.json`, {
           method: 'POST',

@@ -1,36 +1,46 @@
 import React, { useContext, useEffect } from "react";
 
 import { connect } from 'react-redux'
+import { Link } from "react-router-dom";
 
-import { LogContext } from "../../context/LogProvider";
+import { fetchLogsStartAsync, deleteLog } from '../../redux/log/log.actions'
 import { UserContext } from "../../context/UserProvider";
 import CheckBox from "../UI/CheckBox";
 import SearchBar from "../UI/SearchBar";
-// import LogModal from "./LogModal";
 
-const LogListPage = ( { logs } ) => {
-  const logContext = useContext(LogContext);
+const LogListPage = ({ logs, fetchLogsStartAsync, deleteLog}) => {
+
   const userContext = useContext(UserContext);
 
   useEffect(() => {
-    userContext && logContext.loadingUserLogs(userContext.uid);
-  }, [userContext, logContext]);
+    userContext && fetchLogsStartAsync(userContext.uid);
+    
+  }, [userContext, fetchLogsStartAsync]);
 
-  // useEffect(() => {
-  //   userContext && logContext.loadingUserLogs(userContext.uid);
-  // }, [logContext, userContext]);
+  const deleteHandler = (e) => {
 
-  // const [modal, setModal] = useState(false);
+    deleteLog({
+      logId: e.target.parentElement.id, 
+      userId: userContext.uid
+    })
 
-  const handleModal = (e) => {
-    console.log(e.target.id);
-    // setModal(true);
-  };
+  }
 
+  const dateHandler = (date) => {
+    
+    var theDate = new Date(date);
+    return theDate.toLocaleDateString();
+    
+  }
+  
   return (
     <div className="LogList relative">
       <div className="w-5/6">
         <div className="Filter">
+
+          <CheckBox value="title" labelfor="title" label="Title" />
+          <CheckBox value="result" labelfor="result" label="Result" />
+
           <CheckBox
             value="dateCreated"
             labelfor="dateCreated"
@@ -41,12 +51,9 @@ const LogListPage = ( { logs } ) => {
             labelfor="dateModified"
             label="Date Modified"
           />
-          <CheckBox value="title" labelfor="title" label="Title" />
-          <CheckBox value="result" labelfor="result" label="Result" />
           <SearchBar />
         </div>
-        {logContext.userLogs &&
-          logContext.userLogs.map(
+        {logs && logs.map(
             ({
               id,
               title,
@@ -57,28 +64,44 @@ const LogListPage = ( { logs } ) => {
               dateModified,
               active,
             }) => (
-              <div key={id} id={id} onClick={handleModal} className="MyLog">
-                <p>date created: {dateCreated}</p>
+              <div key={id} id={id}  className="MyLog">
+
                 <p>title: {title}</p>
                 <p>result: {result}</p>
-                <p>comment: {comment}</p>
-                <p>Edit</p>
-                <p>×</p>
+                <p>date created: {dateHandler(dateCreated)}</p>
+                <p>date mod: {dateHandler(dateModified)}</p>
+
+                <Link key={id} to={{pathname:`/mylogs/${id}`}} params={{
+                  id,
+                  title,
+                  log,
+                  result,
+                  comment,
+                  dateCreated,
+                  dateModified,
+                  active,
+                }}>
+                  <p>Details</p>
+                </Link>  
+
+                <p onClick={(e) => deleteHandler(e)}>×</p>
               </div>
             )
           )}
-        {/* {modal ? (
-          <LogModal id={logContext.userLogs && logContext.userLogs.id} />
-        ) : null} */}
+
       </div>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
+const mapStateToProps = (state) => ({
     logs: state.log.userLogs
-  }
-}
+})
 
-export default connect(mapStateToProps)(LogListPage);
+const mapDispatchToProps = (dispatch) => ({
+    fetchLogsStartAsync: (uid) => dispatch(fetchLogsStartAsync(uid)),
+    deleteLog: (obj) => dispatch(deleteLog(obj))
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogListPage);
