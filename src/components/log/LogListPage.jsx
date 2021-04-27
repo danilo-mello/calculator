@@ -3,12 +3,12 @@ import React, { useContext, useEffect } from "react";
 import { connect } from 'react-redux'
 import { Link } from "react-router-dom";
 
-import { fetchLogsStartAsync, deleteLog } from '../../redux/log/log.actions'
+import { fetchLogsStartAsync, deleteLog, sortLogs } from '../../redux/log/log.actions'
 import { UserContext } from "../../context/UserProvider";
-import CheckBox from "../UI/CheckBox";
+// import CheckBox from "../UI/CheckBox";
 import SearchBar from "../UI/SearchBar";
 
-const LogListPage = ({ logs, fetchLogsStartAsync, deleteLog}) => {
+const LogListPage = ({ logs, fetchLogsStartAsync, deleteLog, sortLogs }) => {
 
   const userContext = useContext(UserContext);
 
@@ -32,25 +32,28 @@ const LogListPage = ({ logs, fetchLogsStartAsync, deleteLog}) => {
     return theDate.toLocaleDateString();
     
   }
+
+  const filterHandle = (e) => {
+    sortLogs(e.target.id)
+  }
   
   return (
     <div className="LogList relative">
       <div className="w-5/6">
         <div className="Filter">
 
-          <CheckBox value="title" labelfor="title" label="Title" />
-          <CheckBox value="result" labelfor="result" label="Result" />
+          <p>filter by:</p>
+          <p id="title" onClick={(e) => filterHandle(e)}>Title</p>
+          <p id="result" onClick={(e) => filterHandle(e)}>Result</p>
+          <p id="dateCreated" onClick={(e) => filterHandle(e)}>Date Created</p>
+          <p id="dateModified" onClick={(e) => filterHandle(e)}>Date Modified</p>
+          
 
-          <CheckBox
-            value="dateCreated"
-            labelfor="dateCreated"
-            label="Date Created"
-          />
-          <CheckBox
-            value="dateModified"
-            labelfor="dateModified"
-            label="Date Modified"
-          />
+          {/* <CheckBox value="title" labelfor="title" label="Title" />
+          <CheckBox value="result" labelfor="result" label="Result" />
+          <CheckBox value="dateCreated" labelfor="dateCreated" label="Date Created" />
+          <CheckBox value="dateModified" labelfor="dateModified" label="Date Modified" /> */}
+
           <SearchBar />
         </div>
         {logs && logs.map(
@@ -100,7 +103,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     fetchLogsStartAsync: (uid) => dispatch(fetchLogsStartAsync(uid)),
-    deleteLog: (obj) => dispatch(deleteLog(obj))
+    deleteLog: (obj) => dispatch(deleteLog(obj)),
+    sortLogs: (sortBy) => dispatch(sortLogs(sortBy))
 })
 
 

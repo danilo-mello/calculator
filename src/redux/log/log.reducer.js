@@ -4,10 +4,11 @@ import {
     DELETE_LOG, 
     FETCH_LOGS_START, 
     FETCH_LOGS_SUCCESS, 
-    FETCH_LOGS_FAILURE 
+    FETCH_LOGS_FAILURE,
+    SORT_LOGS,
 } from './log.actions'
 
-import { createLog, updateLog, deleteLog } from './log.util'
+import { createLog, updateLog, deleteLog, sortLogs } from './log.util'
 
 const initState = {
     userLogs: null,
@@ -18,7 +19,9 @@ const initState = {
 const logReducer = (state = initState, action) => {
 
     switch (action.type){
+
         case CREATE_LOG:
+
             return {
                 ...state, 
                 userLogs: createLog(action.payload)
@@ -33,11 +36,14 @@ const logReducer = (state = initState, action) => {
             return deleteLog(state, action.payload)
         
         case FETCH_LOGS_START:
+
             return {
                 ...state,
                 isFetching: true,
             }
+
         case FETCH_LOGS_SUCCESS:
+
             return {
                 ...state,
                 isFetching: false,
@@ -50,8 +56,12 @@ const logReducer = (state = initState, action) => {
                 errorMessage: action.payload,
             }
 
+        case SORT_LOGS:
+
+            return sortLogs(state, action.payload)
 
         default:
+            
             return state
     }
 }
