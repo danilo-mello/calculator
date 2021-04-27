@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Application from "./components/Application";
 import SaveLog from "./components/log/SaveLog";
 import LogListPage from "./components/log/LogListPage";
+import LogModal from "./components/log/LogModal";
 import UserProvider from "./context/UserProvider";
 import CalcProvider from "./context/CalcProvider";
 import LogProvider from "./context/LogProvider";
@@ -25,6 +26,7 @@ function App() {
               <Route exact path="/" component={Application} />
               <Route exact path="/savelog" component={SaveLog} />
               <Route exact path="/mylogs" component={LogListPage} />
+              <Route path="/mylogs/:id" component={LogModal} />
               <Route component={PageNotFound} />
             </Switch>
           </UserProvider>

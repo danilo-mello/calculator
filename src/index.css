@@ -70,7 +70,7 @@
     @apply h-1/2 lg:h-full w-full lg:w-1/2 flex items-center justify-center border;
   }
   .Button {
-    @apply h-12 w-full hover:text-gray-300 bg-white bg-opacity-20 hover:bg-opacity-25 border-t border-gray-500 duration-300 shadow-md rounded-lg;
+    @apply justify-center h-12 w-full hover:text-gray-300 bg-white bg-opacity-20 hover:bg-opacity-25 border-t border-gray-500 duration-300 shadow-md rounded-lg;
   }
   .Input {
     @apply h-12 w-full placeholder-gray-500 bg-white bg-opacity-20 hover:bg-opacity-10 border-t border-gray-800 duration-300 outline-none shadow-inner rounded-lg px-4;

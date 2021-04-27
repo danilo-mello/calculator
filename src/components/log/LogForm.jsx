@@ -1,16 +1,21 @@
 import React, { useState, useContext, useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
+import { connect } from 'react-redux'
+
+import { createLog } from '../../redux/log/log.actions'
 
 import { CalcContext } from "../../context/CalcProvider";
-import { LogContext } from "../../context/LogProvider";
+// import { LogContext } from "../../context/LogProvider";
 import { UserContext } from "../../context/UserProvider";
 import Input from "../UI/Input";
 import Textarea from "../UI/Textarea";
 import Button from "../UI/Button";
 
-const LogForm = () => {
+
+
+const LogForm = ({ createLog }) => {
   const calcContext = useContext(CalcContext);
-  const logContext = useContext(LogContext);
+  // const logContext = useContext(LogContext);
   const userContext = useContext(UserContext);
 
   const [title, setTitle] = useState("");
@@ -40,7 +45,8 @@ const LogForm = () => {
     e.preventDefault();
 
     if (title && log && result && comment){
-      logContext.onSaveLog({
+
+      let userLog = {
         title: title,
         log: log,
         result: result,
@@ -51,12 +57,18 @@ const LogForm = () => {
           active: "true",
           userId: userId,
         },
-      });
-      history.push("/mylogs");
+
+      }
+
+      createLog(userLog)
+      
+      history.push("/");
+
+
     } else (
       alert("Please fill up all fields!!")
     )
-  };
+  }
 
   const onKeyUpHandler = (e) => {
     console.log(e.target.value)
@@ -118,4 +130,9 @@ const LogForm = () => {
   );
 };
 
-export default LogForm;
+const mapDispatchToProps = (dispatch) => ({
+    createLog: (log) => dispatch(createLog(log)),
+})
+
+
+export default connect(null, mapDispatchToProps)(LogForm);
