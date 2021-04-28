@@ -189,7 +189,7 @@ const LogListPage = ({ logs, fetchLogsStartAsync, deleteLog, sortLogs }) => {
   }
   
   return (
-    <div className="LogList relative">
+    <div className="LogList">
       <div className="w-5/6">
         <div className="Filter">
 

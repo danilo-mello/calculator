@@ -76,9 +76,12 @@
     @apply h-12 w-full placeholder-gray-500 bg-white bg-opacity-20 hover:bg-opacity-10 border-t border-gray-800 duration-300 outline-none shadow-inner rounded-lg px-4;
   }
   .Textarea {
-    @apply h-1/2 xl:h-2/3 w-full placeholder-gray-500 bg-white bg-opacity-20 hover:bg-opacity-10 border-t border-gray-800 duration-300 outline-none shadow-inner rounded-lg p-4;
+    @apply h-1/2 w-full placeholder-gray-500 bg-white bg-opacity-20 hover:bg-opacity-10 border-t border-gray-800 duration-300 outline-none shadow-inner rounded-lg p-4;
   }
   .Log {
+    @apply h-2/3 w-full bg-white bg-opacity-20 hover:bg-opacity-10 border-t border-gray-800 duration-300 outline-none shadow-inner rounded-lg p-4;
+  }
+  .LogCalc {
     @apply h-full w-full bg-white bg-opacity-20 hover:bg-opacity-10 border-t border-gray-800 duration-300 outline-none shadow-inner rounded-lg p-4;
   }
   .SearchInput {

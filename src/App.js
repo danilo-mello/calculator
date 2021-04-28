@@ -19,9 +19,10 @@ function App() {
       <LogProvider>
         <CalcProvider>
           <UserProvider>
-            <Route>
+            {/* <Route>
               <Route path="/" component={NavBar} />
-            </Route>
+            </Route> */}
+            <NavBar />
             <Switch>
               <Route exact path="/" component={Application} />
               <Route exact path="/savelog" component={SaveLog} />
