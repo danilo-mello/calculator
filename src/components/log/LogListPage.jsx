@@ -1,20 +1,37 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { connect } from 'react-redux'
 import { Link } from "react-router-dom";
 
 import { fetchLogsStartAsync, deleteLog, sortLogs } from '../../redux/log/log.actions'
 import { UserContext } from "../../context/UserProvider";
-// import CheckBox from "../UI/CheckBox";
+// import CheckBox from "../UI/CheckBox"; 
 import SearchBar from "../UI/SearchBar";
 
 const LogListPage = ({ logs, fetchLogsStartAsync, deleteLog, sortLogs }) => {
 
   const userContext = useContext(UserContext);
+  const [filter, setFilter] = useState({
+    title: {
+      active: false,
+      asc: false
+    },
+    result: {
+      active: false,
+      asc: false
+    },
+    dateCreated: {
+      active: false,
+      asc: false
+    },
+    dateModified: {
+      active: false,
+      asc: false
+    }
+  })
 
   useEffect(() => {
     userContext && fetchLogsStartAsync(userContext.uid);
-    
   }, [userContext, fetchLogsStartAsync]);
 
   const deleteHandler = (e) => {
@@ -34,7 +51,119 @@ const LogListPage = ({ logs, fetchLogsStartAsync, deleteLog, sortLogs }) => {
   }
 
   const filterHandle = (e) => {
-    sortLogs(e.target.id)
+
+    sortLogs({
+      sortBy: e.target.id, 
+      filter: filter.[e.target.id].asc
+    })
+
+    switch (e.target.id) {
+      case 'title':
+        setFilter({
+          title: {
+            active: true,
+            asc: !filter.title.asc
+          },
+          result: {
+            active: false,
+            asc: false
+          },
+          dateCreated: {
+            active: false,
+            asc: false
+          },
+          dateModified: {
+            active: false,
+            asc: false
+          }
+        })
+        break;
+      case 'result':
+        setFilter({
+          title: {
+            active: false,
+            asc: false
+          },
+          result: {
+            active: true,
+            asc: !filter.result.asc
+          },
+          dateCreated: {
+            active: false,
+            asc: false
+          },
+          dateModified: {
+            active: false,
+            asc: false
+          }
+        })
+        break;
+      case 'dateCreated':
+        setFilter({
+          title: {
+            active: false,
+            asc: false
+          },
+          result: {
+            active: false,
+            asc: false
+          },
+          dateCreated: {
+            active: true,
+            asc: !filter.dateCreated.asc
+          },
+          dateModified: {
+            active: false,
+            asc: false
+          }
+        })
+        break;
+      case 'dateModified':
+        setFilter({
+          title: {
+            active: false,
+            asc: false
+          },
+          result: {
+            active: false,
+            asc: false
+          },
+          dateCreated: {
+            active: false,
+            asc: false
+          },
+          dateModified: {
+            active: true,
+            asc: !filter.dateModified.asc
+          }
+        })
+        break;
+    
+      default:
+        break;
+    }
+
+  }
+
+  const clearFilters = () => {
+    setFilter({
+      title: {
+        active: false,
+        asc: false
+      },
+      result: {
+        active: false,
+        asc: false
+      },
+      dateCreated: {
+        active: false,
+        asc: false
+      },
+      dateModified: {
+        active: false,
+        asc: false
+      }
+    })
   }
   
   return (
@@ -42,17 +171,11 @@ const LogListPage = ({ logs, fetchLogsStartAsync, deleteLog, sortLogs }) => {
       <div className="w-5/6">
         <div className="Filter">
 
-          <p>filter by:</p>
-          <p id="title" onClick={(e) => filterHandle(e)}>Title</p>
-          <p id="result" onClick={(e) => filterHandle(e)}>Result</p>
-          <p id="dateCreated" onClick={(e) => filterHandle(e)}>Date Created</p>
-          <p id="dateModified" onClick={(e) => filterHandle(e)}>Date Modified</p>
-          
-
-          {/* <CheckBox value="title" labelfor="title" label="Title" />
-          <CheckBox value="result" labelfor="result" label="Result" />
-          <CheckBox value="dateCreated" labelfor="dateCreated" label="Date Created" />
-          <CheckBox value="dateModified" labelfor="dateModified" label="Date Modified" /> */}
+          <p onClick={clearFilters}>filter by:</p>
+          <p id="title" onClick={(e) => filterHandle(e)}>Title {filter.title.active ? filter.title.asc ? <span>↓</span> : <span>↑</span> : ""}</p>
+          <p id="result" onClick={(e) => filterHandle(e)}>Result {filter.result.active ? filter.result.asc ? <span>↓</span> : <span>↑</span> : ""}</p>
+          <p id="dateCreated" onClick={(e) => filterHandle(e)}>Date Created {filter.dateCreated.active ? filter.dateCreated.asc ? <span>↓</span> : <span>↑</span> : ""}</p>
+          <p id="dateModified" onClick={(e) => filterHandle(e)}>Date Modified {filter.dateModified.active ? filter.dateModified.asc ? <span>↓</span> : <span>↑</span> : ""}</p>
 
           <SearchBar />
         </div>
@@ -104,7 +227,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     fetchLogsStartAsync: (uid) => dispatch(fetchLogsStartAsync(uid)),
     deleteLog: (obj) => dispatch(deleteLog(obj)),
-    sortLogs: (sortBy) => dispatch(sortLogs(sortBy))
+    sortLogs: (obj) => dispatch(sortLogs(obj))
 })
 
 

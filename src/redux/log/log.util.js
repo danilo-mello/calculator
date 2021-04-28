@@ -72,57 +72,59 @@ export const updateLog = (state, obj) => {
     }
 }
 
-export const sortLogs = (state, sortBy) => {
+export const sortLogs = (state, obj) => {
 
     let sortedLogs = []
 
-    switch (sortBy) {
+    switch (obj.sortBy) {
         case 'title':
-            
+          
           let sortedByTitle = []
           for (let i = 0; i < state.userLogs.length; i++) {
             sortedByTitle.push(state.userLogs[i].title)
           }
-          sortedByTitle.sort()
+          
+          obj.filter ? sortedByTitle.reverse() : sortedByTitle.sort()
 
           for (let i = 0; i < sortedByTitle.length; i++) {
             for (let j = 0; j < state.userLogs.length; j++) {
                 if (sortedByTitle[i] === state.userLogs[j].title){
-                    sortedLogs.push(state.userLogs[j])
+                    if (!sortedLogs.includes(state.userLogs[j])){
+                        sortedLogs.push(state.userLogs[j])
+                    }
                 }
             }
           }
-
           break;
-
         case 'result':
-
             let sortedByResult = []
             for (let i = 0; i < state.userLogs.length; i++) {
                 sortedByResult.push(state.userLogs[i].result)
             }
-            sortedByResult.sort()
+            obj.filter ? sortedByResult.sort(function(a, b){return b-a}) : sortedByResult.sort(function(a, b){return a-b})
   
             for (let i = 0; i < sortedByResult.length; i++) {
               for (let j = 0; j < state.userLogs.length; j++) {
                   if (sortedByResult[i] === state.userLogs[j].result){
-                      sortedLogs.push(state.userLogs[j])
+                    if (!sortedLogs.includes(state.userLogs[j])){
+                        sortedLogs.push(state.userLogs[j])
+                    }   
                   }
               }
             }
-
           break;
         case 'dateCreated':
             let sortedByDateCreated = []
             for (let i = 0; i < state.userLogs.length; i++) {
                 sortedByDateCreated.push(state.userLogs[i].dateCreated)
             }
-            sortedByDateCreated.sort()
-  
+            obj.filter ? sortedByDateCreated.sort(function(a, b){return b-a}) : sortedByDateCreated.sort(function(a, b){return a-b})
             for (let i = 0; i < sortedByDateCreated.length; i++) {
               for (let j = 0; j < state.userLogs.length; j++) {
                   if (sortedByDateCreated[i] === state.userLogs[j].dateCreated){
-                      sortedLogs.push(state.userLogs[j])
+                    if (!sortedLogs.includes(state.userLogs[j])){
+                        sortedLogs.push(state.userLogs[j])
+                    } 
                   }
               }
             }
@@ -132,12 +134,14 @@ export const sortLogs = (state, sortBy) => {
             for (let i = 0; i < state.userLogs.length; i++) {
                 sortedByDateModified.push(state.userLogs[i].dateModified)
             }
-            sortedByDateModified.sort()
+            obj.filter ? sortedByDateModified.sort(function(a, b){return b-a}) : sortedByDateModified.sort(function(a, b){return a-b})
   
             for (let i = 0; i < sortedByDateModified.length; i++) {
               for (let j = 0; j < state.userLogs.length; j++) {
                   if (sortedByDateModified[i] === state.userLogs[j].dateModified){
-                      sortedLogs.push(state.userLogs[j])
+                    if (!sortedLogs.includes(state.userLogs[j])){
+                        sortedLogs.push(state.userLogs[j])
+                    } 
                   }
               }
             }
