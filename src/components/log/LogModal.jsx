@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useContext } from "react";
+import React, { useCallback, useEffect, useState, useContext, useReducer } from "react";
 
 import { useHistory } from "react-router-dom";
 import { connect } from 'react-redux'
@@ -8,11 +8,13 @@ import { UserContext } from "../../context/UserProvider";
 import Input from "../UI/Input";
 import Textarea from "../UI/Textarea";
 import Button from "../UI/Button";
+import Log from "../UI/Log";
 
 const LogModal = ({logs, fetchLogsStartAsync, deleteLog, updateLog, ...props}) => {
 
   const [dateModified, setDateModified] = useState("");
   const [comment, setComment] = useState("");
+  const [title, setTitle] = useState("");
 
   const [userLog, setUserLog] = useState({
     id: "",
@@ -35,17 +37,18 @@ const LogModal = ({logs, fetchLogsStartAsync, deleteLog, updateLog, ...props}) =
   useEffect(() => {
 
     userContext && fetchLogsStartAsync(userContext.uid);
-    userContext && dateUser();
-
+    dateUser();
+    console.log("logs: ", logs)
     if(logs){
       for (let i = 0; i < logs.length; i++) {
         if (logs.[i].id === props.match.params.id) {
           setUserLog(logs[i])
           setComment(logs[i].comment)
+          setTitle(logs[i].title)
         }
       }
     }
-  }, [userContext, fetchLogsStartAsync]);
+  }, [userContext, fetchLogsStartAsync, props.match.params.id]);
 
   const onKeyUpHandler = (e) => {
     console.log(e.target.value)
@@ -70,7 +73,7 @@ const LogModal = ({logs, fetchLogsStartAsync, deleteLog, updateLog, ...props}) =
   const dateHandler = (date) => {
     
     var theDate = new Date(date);
-    return theDate.toLocaleDateString();
+    return theDate.toLocaleDateString() + " " + theDate.toLocaleTimeString('en-US');
     
   }
 
@@ -78,7 +81,7 @@ const LogModal = ({logs, fetchLogsStartAsync, deleteLog, updateLog, ...props}) =
     e.preventDefault();
 
     let updatedLog = {
-      title: userLog.title,
+      title: title,
       log: userLog.log,
       result: userLog.result,
       comment: comment,
@@ -112,22 +115,14 @@ const LogModal = ({logs, fetchLogsStartAsync, deleteLog, updateLog, ...props}) =
           id="title"
           type="text"
           onChange={(e) => {
-            console.log(e.target.value);
+            setTitle(e.target.value);
           }}
           placeholder="Title"
           required={true}
           onKeyUp={onKeyUpHandler}
-          value={userLog.title}
+          value={title}
         />
-        <Textarea
-          id="log"
-          onChange={(e) => {
-            console.log(e.target.value);
-          }}
-          placeholder="Log"
-          defaultValue={userLog.log}
-          required={true}
-        />
+        <Log calclog={userLog.log} />
         <Input
           id="result"
           type="text"
@@ -156,7 +151,7 @@ const LogModal = ({logs, fetchLogsStartAsync, deleteLog, updateLog, ...props}) =
 
         <Button button="Back" onClick={handleBack} />
         <Button button="Delete" onClick={(e) => deleteHandler(e)} />
-        {userLog.comment !== comment ? (
+        {userLog.comment !== comment || userLog.title !== title ? (
           <Button type="submit" button="Save Edit" />
         ) : null}
       </div>

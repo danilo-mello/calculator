@@ -5,33 +5,31 @@ import { connect } from 'react-redux'
 import { createLog } from '../../redux/log/log.actions'
 
 import { CalcContext } from "../../context/CalcProvider";
-// import { LogContext } from "../../context/LogProvider";
 import { UserContext } from "../../context/UserProvider";
 import Input from "../UI/Input";
 import Textarea from "../UI/Textarea";
 import Button from "../UI/Button";
-
-
+import Log from "../UI/Log";
 
 const LogForm = ({ createLog }) => {
-  const calcContext = useContext(CalcContext);
-  // const logContext = useContext(LogContext);
-  const userContext = useContext(UserContext);
+  const calcContext = useContext(CalcContext)
+  const userContext = useContext(UserContext)
 
-  const [title, setTitle] = useState("");
-  const [log, setLog] = useState(calcContext.calclog);
-  const [comment, setComment] = useState("");
-  const [result, setResult] = useState(calcContext.result);
-  const [dateCreated, setDateCreated] = useState("");
-  const [dateModified, setDateModified] = useState("");
-  const [userId, setUserId] = useState("");
+  const [title, setTitle] = useState("")
+  const [log, setLog] = useState(calcContext.calclog)
+  const [comment, setComment] = useState("")
+  const [result, setResult] = useState(calcContext.result)
+  const [dateCreated, setDateCreated] = useState("")
+  const [dateModified, setDateModified] = useState("")
+  const [userId, setUserId] = useState("")
 
   useEffect(() => {
     const dateUser = () => {
-      var date = new Date();
-      setDateCreated(date.getTime());
-      setDateModified(date.getTime());
-      setUserId(userContext.uid);
+      var date = new Date()
+      setDateCreated(date.getTime())
+      setDateModified(date.getTime())
+      setUserId(userContext.uid)
+      setLog(calcContext.calclog)
     };
 
     userContext && dateUser();
@@ -92,15 +90,7 @@ const LogForm = ({ createLog }) => {
           required={true}
           onKeyUp={onKeyUpHandler}
         />
-        <Textarea
-          id="log"
-          onChange={(e) => {
-            setLog(e.target.value);
-          }}
-          placeholder="Log"
-          defaultValue={calcContext.calclog}
-          required={true}
-        />
+        <Log calclog={calcContext.calclog} />
         <Input
           id="result"
           type="text"

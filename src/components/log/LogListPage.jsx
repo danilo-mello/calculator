@@ -50,6 +50,28 @@ const LogListPage = ({ logs, fetchLogsStartAsync, deleteLog, sortLogs }) => {
     
   }
 
+  const resultHandler = (result) => {
+    var roundedResult;
+    if (typeof result === 'number') {
+      return result
+    }
+    try {
+      roundedResult = parseFloat(result).toFixed(2)
+    }
+    catch(err) {
+      roundedResult = "error";
+    }
+
+    return roundedResult
+  }
+
+    const titleHandler = (title) => {
+      if (title.length >= 25){
+        return title.substr(0, 22) + "..."
+      }
+      return title
+  }
+
   const filterHandle = (e) => {
 
     sortLogs({
@@ -192,8 +214,8 @@ const LogListPage = ({ logs, fetchLogsStartAsync, deleteLog, sortLogs }) => {
             }) => (
               <div key={id} id={id}  className="MyLog">
 
-                <p>title: {title}</p>
-                <p>result: {result}</p>
+                <p>title: {titleHandler(title)}</p>
+                <p>result: {resultHandler(result)}</p>
                 <p>date created: {dateHandler(dateCreated)}</p>
                 <p>date mod: {dateHandler(dateModified)}</p>
 

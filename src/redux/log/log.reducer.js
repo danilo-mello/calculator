@@ -6,9 +6,10 @@ import {
     FETCH_LOGS_SUCCESS, 
     FETCH_LOGS_FAILURE,
     SORT_LOGS,
+    SEARCH_LOGS,
 } from './log.actions'
 
-import { createLog, updateLog, deleteLog, sortLogs } from './log.util'
+import { createLog, updateLog, deleteLog, sortLogs, searchLogs } from './log.util'
 
 const initState = {
     userLogs: null,
@@ -59,6 +60,10 @@ const logReducer = (state = initState, action) => {
         case SORT_LOGS:
 
             return sortLogs(state, action.payload)
+
+        case SEARCH_LOGS:
+            
+            return searchLogs(state, action.payload)
 
         default:
             
