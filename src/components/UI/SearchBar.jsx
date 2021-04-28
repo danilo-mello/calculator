@@ -1,22 +1,89 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import { connect } from 'react-redux'
 
 import { searchLogs } from '../../redux/log/log.actions'
+import { UserContext } from "../../context/UserProvider";
 
 
 const SearchBar = ({ searchLogs }) => {
 
   const [search, setSearch] = useState("")
+  const userContext = useContext(UserContext);
+
 
   const searchHandler = (e) => {
     setSearch(e.target.value)
-    searchLogs(e.target.value)
+    fetch(`https://calc-log-default-rtdb.firebaseio.com/logs/${userContext.uid}.json`)
+        .then(response => response.json())
+        .then(responseData => {
+    
+            const loadedLogs = []
+            
+            for (const key in responseData){
+                
+                const log = {                   
+                    id: key,
+                    title: responseData[key].title,
+                    log: responseData[key].log,
+                    result: responseData[key].result,
+                    comment: responseData[key].comment,
+                    dateCreated: responseData[key].meta.dateCreated,
+                    dateModified: responseData[key].meta.dateModified,
+                    active: responseData[key].meta.active,
+    
+                }
+    
+                loadedLogs.push(log)
+    
+            }
+            if (loadedLogs) {
+              searchLogs({
+                search: e.target.value,
+                userId: userContext.uid,
+                logs: loadedLogs
+              })
+            }
+            
+    })
+
   }
 
   const submitHandler = (e) => {
+    
     e.preventDefault()
-    searchLogs(search)
+    fetch(`https://calc-log-default-rtdb.firebaseio.com/logs/${userContext.uid}.json`)
+        .then(response => response.json())
+        .then(responseData => {
+    
+            const loadedLogs = []
+            
+            for (const key in responseData){
+                
+                const log = {                   
+                    id: key,
+                    title: responseData[key].title,
+                    log: responseData[key].log,
+                    result: responseData[key].result,
+                    comment: responseData[key].comment,
+                    dateCreated: responseData[key].meta.dateCreated,
+                    dateModified: responseData[key].meta.dateModified,
+                    active: responseData[key].meta.active,
+    
+                }
+    
+                loadedLogs.push(log)
+    
+            }
+            if (loadedLogs) {
+              searchLogs({
+                search: search,
+                userId: userContext.uid,
+                logs: loadedLogs
+              })
+            }
+            
+    })
   }
 
   return (
@@ -43,9 +110,8 @@ const SearchBar = ({ searchLogs }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    searchLogs: (search) => dispatch(searchLogs(search))
+    searchLogs: (obj) => dispatch(searchLogs(obj))
 })
-
 
 export default connect(null, mapDispatchToProps)(SearchBar);
 

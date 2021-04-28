@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useContext, useReducer } from "react";
+import React, { useCallback, useEffect, useState, useContext } from "react";
 
 import { useHistory } from "react-router-dom";
 import { connect } from 'react-redux'
@@ -45,6 +45,7 @@ const LogModal = ({logs, fetchLogsStartAsync, deleteLog, updateLog, ...props}) =
           setUserLog(logs[i])
           setComment(logs[i].comment)
           setTitle(logs[i].title)
+          setDateModified(logs[i].dateModified)
         }
       }
     }
@@ -79,7 +80,7 @@ const LogModal = ({logs, fetchLogsStartAsync, deleteLog, updateLog, ...props}) =
 
   const onSaveLogHandler = (e) => {
     e.preventDefault();
-
+    dateUser();
     let updatedLog = {
       title: title,
       log: userLog.log,
@@ -146,9 +147,8 @@ const LogModal = ({logs, fetchLogsStartAsync, deleteLog, updateLog, ...props}) =
           onKeyUp={onKeyUpHandler}
         />
 
-        <p className="Button">date created: {dateHandler(userLog.dateCreated)}</p>
-        <p className="Button">date modified: {dateHandler(userLog.dateModified)}</p>
-
+        <Button button={`Date Created: ${dateHandler(userLog.dateCreated)}`}/>
+        <Button button={`Date Modified: ${dateHandler(dateModified)}`}/>
         <Button button="Back" onClick={handleBack} />
         <Button button="Delete" onClick={(e) => deleteHandler(e)} />
         {userLog.comment !== comment || userLog.title !== title ? (

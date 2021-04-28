@@ -3,7 +3,7 @@ import { CalcContext } from "../../context/CalcProvider";
 import BasicCalcKeyPad from "./BasicCalcKeyPad";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
-import Log from "../UI/Log";
+import LogCalc from "../UI/LogCalc";
 import { useHistory } from "react-router-dom";
 
 const BasicCalc = () => {
@@ -44,7 +44,7 @@ const BasicCalc = () => {
       <div className="h-3/4 lg:h-2/3 w-4/5 sm:w-2/3 flex flex-wrap border">
         <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex flex-wrap content-between p-2 border">
           <div className="h-1/3 lg:h-2/3 w-full">
-            <Log calclog={calclog} />
+            <LogCalc calclog={calclog} />
           </div>
 
           <Input

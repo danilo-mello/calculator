@@ -6,6 +6,7 @@ import SignIn from "./auth/SignIn";
 import { UserContext } from "../context/UserProvider";
 
 function Application({ fetchLogsStartAsync }) {
+  
   const user = useContext(UserContext);
 
   const style = {

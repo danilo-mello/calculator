@@ -156,15 +156,18 @@ export const sortLogs = (state, obj) => {
     }
 }
 
-export const searchLogs = (state, search) => {
+export const searchLogs = (state, obj) => {
+
+    const search = obj.search
+    const logs = obj.logs
+
     let searchedLogs = []
-    console.log(search)
-    for (let i = 0; i < state.userLogs.length; i++) {
-        if(state.userLogs[i].title.includes(search) || state.userLogs[i].result.toString().includes(search)) {
-            searchedLogs.push(state.userLogs[i])
+
+    for (let i = 0; i < logs.length; i++) {
+        if(logs[i].title.includes(search) || logs[i].result.toString().includes(search)) {
+            searchedLogs.push(logs[i])
         }
     }
-    console.log(searchedLogs)
     return {
         ...state,
         userLogs: searchedLogs
