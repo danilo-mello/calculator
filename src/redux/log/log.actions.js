@@ -88,8 +88,8 @@ export const deleteLog = (obj) => ({
     payload: obj
 })
 
-export const sortLogs = (sortBy) => ({
+export const sortLogs = (obj) => ({
     type: SORT_LOGS,
-    payload: sortBy
+    payload: obj
 })
 
