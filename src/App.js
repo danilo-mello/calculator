@@ -27,7 +27,7 @@ function App() {
               <Route exact path="/" component={Application} />
               <Route exact path="/savelog" component={SaveLog} />
               <Route exact path="/mylogs" component={LogListPage} />
-              <Route path="/mylogs/:id" component={LogModal} />
+              <Route exact path="/mylogs/:id" component={LogModal} />
               <Route component={PageNotFound} />
             </Switch>
           </UserProvider>

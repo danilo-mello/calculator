@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 
 import { connect } from 'react-redux'
 import { Link } from "react-router-dom";
+import { Confirm } from 'react-st-modal';
 
 import { fetchLogsStartAsync, deleteLog, sortLogs } from '../../redux/log/log.actions'
 import { UserContext } from "../../context/UserProvider";
-// import CheckBox from "../UI/CheckBox"; 
 import SearchBar from "../UI/SearchBar";
 
 const LogListPage = ({ logs, fetchLogsStartAsync, deleteLog, sortLogs }) => {
@@ -36,10 +36,19 @@ const LogListPage = ({ logs, fetchLogsStartAsync, deleteLog, sortLogs }) => {
 
   const deleteHandler = (e) => {
 
-    deleteLog({
-      logId: e.target.parentElement.id, 
-      userId: userContext.uid
-    })
+    const confirm = async () => {
+          const result = await Confirm('Are you sure you want to delete this log?', 
+            'Attention!');
+          
+          if (result) {
+            deleteLog({
+              logId: e.target.parentElement.id, 
+              userId: userContext.uid
+            })
+          } 
+    }
+
+    confirm()
 
   }
 
@@ -201,7 +210,8 @@ const LogListPage = ({ logs, fetchLogsStartAsync, deleteLog, sortLogs }) => {
 
           <SearchBar />
         </div>
-        {logs && logs.map(
+        
+        { logs && logs.length !== 0 ? logs.map(
             ({
               id,
               title,
@@ -235,8 +245,7 @@ const LogListPage = ({ logs, fetchLogsStartAsync, deleteLog, sortLogs }) => {
                 <p onClick={(e) => deleteHandler(e)}>×</p>
               </div>
             )
-          )}
-
+          ): <div className="Mylog"> <p>You currently have no saved logs!</p></div> }
       </div>
     </div>
   );
