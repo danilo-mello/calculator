@@ -57,7 +57,7 @@ const LogModal = ({logs, fetchLogsStartAsync, deleteLog, updateLog, ...props}) =
 
   const history = useHistory();
 
-  const handleBack = useCallback(() => history.push("/mylogs"), [history]);
+  const handleBack = useCallback(() => history.push("/"), [history]);
 
   const deleteHandler = (e) => {
     e.preventDefault()

@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
 import { auth } from "../../firebase";
+import { UserContext } from "../../context/UserProvider";
+
 
 const NavBar = ({ fixed }) => {
+
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const userContext = useContext(UserContext);
+
 
   return (
     <div className="w-full fixed top-0 left-0 border">
@@ -27,6 +33,7 @@ const NavBar = ({ fixed }) => {
             }
             id="example-navbar-danger"
           >
+            { userContext ? 
             <ul className="flex flex-col lg:flex-row lg:ml-auto">
 
               <li className="nav-item">
@@ -49,6 +56,7 @@ const NavBar = ({ fixed }) => {
                 </a>
               </li>
             </ul>
+            : "" }
           </div>
         </div>
       </nav>
