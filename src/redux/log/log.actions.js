@@ -8,7 +8,7 @@ export const FETCH_LOGS_START = 'FETCH_LOGS_START'
 export const FETCH_LOGS_SUCCESS = 'FETCH_LOGS_SUCCESS'
 export const FETCH_LOGS_FAILURE = 'FETCH_LOGS_FAILURE'
 export const SORT_LOGS = 'SORT_LOGS'
-
+export const SEARCH_LOGS = 'SEARCH_LOGS'
 
 
 // action creators
@@ -93,3 +93,7 @@ export const sortLogs = (obj) => ({
     payload: obj
 })
 
+export const searchLogs = (search) => ({
+    type: SEARCH_LOGS,
+    payload: search
+})
