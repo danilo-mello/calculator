@@ -20,7 +20,7 @@ function Application({ fetchLogsStartAsync }) {
       <BasicCalc />
     </>
   ) : (
-    <div className="h-full w-full flex items-center justify-center border-2">
+    <div className="h-full w-full flex items-center justify-center">
       <div className="w-5/6 md:w-2/5 text-center">
         <h1 className="text-transparent" style={style.text}>
           Calc Log

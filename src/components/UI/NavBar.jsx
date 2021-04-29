@@ -11,15 +11,15 @@ const NavBar = ({ fixed }) => {
 
 
   return (
-    <div className="w-full fixed top-0 left-0 border">
-      <nav className="relative flex flex-wrap items-center justify-between py-4 border">
-        <div className="container mx-auto flex flex-wrap items-center justify-between border">
+    <div className="w-full fixed top-0 left-0">
+      <nav className="relative flex flex-wrap items-center justify-between py-4">
+        <div className="container mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            <a className="font-medium inline-block py-2 border" href="/">
+            <a className="font-medium inline-block py-2 " href="/">
               Calc Log
             </a>
             <button
-              className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+              className="text-white cursor-pointer text-xl leading-none px-3 py-1 rounded bg-transparent block lg:hidden outline-none focus:outline-none"
               type="button"
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
@@ -38,7 +38,7 @@ const NavBar = ({ fixed }) => {
 
               <li className="nav-item">
                 <a
-                  className="p-2 flex items-center font-medium hover:opacity-75 border"
+                  className="p-2 flex items-center font-medium hover:opacity-75"
                   href="/mylogs"
                 >
                   My Logs
@@ -46,7 +46,7 @@ const NavBar = ({ fixed }) => {
               </li>
               <li className="nav-item">
                 <a
-                  className="p-2 flex items-center font-medium hover:opacity-75 border"
+                  className="p-2 flex items-center font-medium hover:opacity-75"
                   onClick={() => {
                     auth.signOut();
                   }}

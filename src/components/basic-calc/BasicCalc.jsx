@@ -41,8 +41,8 @@ const BasicCalc = () => {
 
   return (
     <div className="BasicCalc">
-      <div className="h-3/4 lg:h-2/3 w-4/5 sm:w-2/3 flex flex-wrap border">
-        <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex flex-wrap content-between p-2 border">
+      <div className="h-3/4 lg:h-2/3 w-4/5 sm:w-2/3 flex flex-wrap">
+        <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex flex-wrap content-between p-2">
           <div className="h-1/3 lg:h-2/3 w-full">
             <LogCalc calclog={calclog} />
           </div>
@@ -61,7 +61,7 @@ const BasicCalc = () => {
           ) : null}
 
         </div>
-        <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex items-center justify-center p-2 border">
+        <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex items-center justify-center p-2">
           <BasicCalcKeyPad onClick={onClickHandler} />
         </div>
       </div>
