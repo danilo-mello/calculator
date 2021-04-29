@@ -152,7 +152,7 @@ const LogModal = ({logs, fetchLogsStartAsync, deleteLog, updateLog, ...props}) =
         <Button button="Back" onClick={handleBack} />
         <Button button="Delete" onClick={(e) => deleteHandler(e)} />
         {userLog.comment !== comment || userLog.title !== title ? (
-          <Button type="submit" button="Save Edit" />
+          <Button type="submit" button="Save" />
         ) : null}
       </div>
     </form>
