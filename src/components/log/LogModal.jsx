@@ -108,9 +108,9 @@ const LogModal = ({logs, fetchLogsStartAsync, deleteLog, updateLog, ...props}) =
       onSubmit={(e) => {
         onSaveLogHandler(e);
       }}
-      className="h-3/4 lg:h-2/3 w-4/5 sm:w-2/3 flex flex-wrap border"
+      className="h-3/4 lg:h-2/3 w-4/5 sm:w-2/3 flex flex-wrap"
     >
-      <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex flex-wrap content-between p-2 border">
+      <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex flex-wrap content-between p-2">
       
         <Input
           id="title"
@@ -136,7 +136,7 @@ const LogModal = ({logs, fetchLogsStartAsync, deleteLog, updateLog, ...props}) =
           onKeyUp={onKeyUpHandler}
         />
       </div>
-      <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex flex-wrap content-between p-2 border">
+      <div className="h-1/2 lg:h-full w-full lg:w-1/2 flex flex-wrap content-between p-2">
         <Textarea
           id="comment"
           onChange={(e) => {
