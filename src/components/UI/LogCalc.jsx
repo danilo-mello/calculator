@@ -6,7 +6,7 @@ const LogCalc = ({ calclog }) => {
 
 
   return (
-    <div className="LogCalc">
+    <div className="LogCalc overflow-auto">
       Log
       <br />
       <ul>{logMap}</ul>

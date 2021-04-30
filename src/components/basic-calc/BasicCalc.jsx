@@ -18,7 +18,13 @@ const BasicCalc = () => {
   };
 
   const handleSaveLog = () => {
-    history.push("/savelog");
+    let c = Number(calcContext.result)
+    if (!Number.isNaN(c) && Number.isFinite(c)){
+
+      history.push("/savelog");
+    } else {
+      console.log('dont save')
+    }
   };
 
   const onKeyUpHandler = (e) => {
