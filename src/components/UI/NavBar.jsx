@@ -38,8 +38,10 @@ const NavBar = ({ fixed }) => {
               <li className="nav-item">
                 <a
                   className="p-2 flex items-center font-medium hover:opacity-75"
+                  href="/"
                 >
                   {userContext.displayName}
+                  
                 </a>
               </li>
               <li className="nav-item">

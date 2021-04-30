@@ -60,7 +60,7 @@ const LogForm = ({ createLog }) => {
 
       createLog(userLog)
       
-      history.push("/");
+      history.push("/mylogs");
 
 
     } else (

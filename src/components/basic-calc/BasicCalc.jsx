@@ -18,7 +18,13 @@ const BasicCalc = () => {
   };
 
   const handleSaveLog = () => {
-    history.push("/savelog");
+    let c = Number(calcContext.result)
+    if (!Number.isNaN(c) && Number.isFinite(c)){
+
+      history.push("/savelog");
+    } else {
+      console.log('dont save')
+    }
   };
 
   const onKeyUpHandler = (e) => {
@@ -55,9 +61,9 @@ const BasicCalc = () => {
             onKeyUp={onKeyUpHandler}
             onChange={onInputChange}
           />
-          <Button onClick={cancelHandler} button="Cancel" />
+          <Button onClick={cancelHandler} button="Reset" />
           {result ? (
-            <Button type="submit" button="Next" onClick={handleSaveLog} />
+            <Button type="submit" button="Save" onClick={handleSaveLog} />
           ) : null}
 
         </div>
