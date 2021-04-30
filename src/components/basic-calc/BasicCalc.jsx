@@ -55,9 +55,9 @@ const BasicCalc = () => {
             onKeyUp={onKeyUpHandler}
             onChange={onInputChange}
           />
-          <Button onClick={cancelHandler} button="Cancel" />
+          <Button onClick={cancelHandler} button="Reset" />
           {result ? (
-            <Button type="submit" button="Next" onClick={handleSaveLog} />
+            <Button type="submit" button="Save" onClick={handleSaveLog} />
           ) : null}
 
         </div>

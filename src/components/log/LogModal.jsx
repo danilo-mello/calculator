@@ -38,7 +38,6 @@ const LogModal = ({logs, fetchLogsStartAsync, deleteLog, updateLog, ...props}) =
 
     userContext && fetchLogsStartAsync(userContext.uid);
     dateUser();
-    console.log("logs: ", logs)
     if(logs){
       for (let i = 0; i < logs.length; i++) {
         if (logs.[i].id === props.match.params.id) {
@@ -57,7 +56,7 @@ const LogModal = ({logs, fetchLogsStartAsync, deleteLog, updateLog, ...props}) =
 
   const history = useHistory();
 
-  const handleBack = useCallback(() => history.push("/"), [history]);
+  const handleBack = useCallback(() => history.push("/mylogs"), [history]);
 
   const deleteHandler = (e) => {
     e.preventDefault()
@@ -120,7 +119,9 @@ const LogModal = ({logs, fetchLogsStartAsync, deleteLog, updateLog, ...props}) =
           }}
           placeholder="Title"
           required={true}
-          onKeyUp={onKeyUpHandler}
+          onKeyUp={(e) => {
+            setTitle(e.target.value);
+          }}
           value={title}
         />
         <Log calclog={userLog.log} />

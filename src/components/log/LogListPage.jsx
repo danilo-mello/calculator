@@ -11,6 +11,8 @@ import SearchBar from "../UI/SearchBar";
 const LogListPage = ({ logs, fetchLogsStartAsync, deleteLog, sortLogs }) => {
 
   const userContext = useContext(UserContext);
+
+  const [loadedLogs, setLoadedLogs] = useState([])
   const [filter, setFilter] = useState({
     title: {
       active: false,
@@ -202,11 +204,12 @@ const LogListPage = ({ logs, fetchLogsStartAsync, deleteLog, sortLogs }) => {
       <div className="w-5/6">
         <div className="Filter">
 
-          <p onClick={clearFilters}>filter by:</p>
+          
           <p id="title" onClick={(e) => filterHandle(e)}>Title {filter.title.active ? filter.title.asc ? <span>↓</span> : <span>↑</span> : ""}</p>
           <p id="result" onClick={(e) => filterHandle(e)}>Result {filter.result.active ? filter.result.asc ? <span>↓</span> : <span>↑</span> : ""}</p>
           <p id="dateCreated" onClick={(e) => filterHandle(e)}>Date Created {filter.dateCreated.active ? filter.dateCreated.asc ? <span>↓</span> : <span>↑</span> : ""}</p>
           <p id="dateModified" onClick={(e) => filterHandle(e)}>Date Modified {filter.dateModified.active ? filter.dateModified.asc ? <span>↓</span> : <span>↑</span> : ""}</p>
+          <p onClick={clearFilters}>Clear Filter</p>
 
           <SearchBar />
         </div>
@@ -224,10 +227,10 @@ const LogListPage = ({ logs, fetchLogsStartAsync, deleteLog, sortLogs }) => {
             }) => (
               <div key={id} id={id}  className="MyLog">
 
-                <p>title: {titleHandler(title)}</p>
-                <p>result: {resultHandler(result)}</p>
-                <p>date created: {dateHandler(dateCreated)}</p>
-                <p>date mod: {dateHandler(dateModified)}</p>
+                <p className="MyLogUnit">title: {titleHandler(title)}</p>
+                <p className="MyLogUnit">result: {resultHandler(result)}</p>
+                <p className="MyLogUnit">date created: {dateHandler(dateCreated)}</p>
+                <p className="MyLogUnit">date mod: {dateHandler(dateModified)}</p>
 
                 <Link key={id} to={{pathname:`/mylogs/${id}`}} params={{
                   id,
